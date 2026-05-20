@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Perks from "@/components/Perks";
+import HowItWorks from "@/components/HowItWorks";
+import TreatmentFinder from "@/components/TreatmentFinder";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -10,6 +12,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Perks />
+        <HowItWorks />
+        <TreatmentFinder />
       </main>
       <Footer />
     </div>
