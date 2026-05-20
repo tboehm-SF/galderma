@@ -4,6 +4,7 @@ import Perks from "@/components/Perks";
 import HowItWorks from "@/components/HowItWorks";
 import TreatmentFinder from "@/components/TreatmentFinder";
 import Footer from "@/components/Footer";
+import ExploreRewards from "@/components/ExploreRewards";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <TreatmentFinder />
       </main>
       <Footer />
+      <ExploreRewards />
     </div>
   );
 }
