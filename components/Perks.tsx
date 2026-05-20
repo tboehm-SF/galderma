@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Gift, Star, DollarSign, Repeat } from "lucide-react";
 
 export default function Perks() {
@@ -61,17 +62,26 @@ export default function Perks() {
           })}
         </div>
 
-        {/* Image Placeholder for "Perks" visual */}
-        <div className="mt-16 rounded-2xl overflow-hidden shadow-xl">
-          <div className="aspect-video bg-gradient-to-br from-[#E8D5C4] to-[#C4B5A0] flex items-center justify-center">
-            <div className="text-center p-8 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg max-w-md">
-              <p className="text-sm text-[#4A5D7F] font-medium mb-2">
-                📱 Benefits Image Placeholder
-              </p>
-              <p className="text-xs text-gray-600">
-                Lifestyle photo showing member using app or receiving treatment
-              </p>
-            </div>
+        {/* Treatment Areas Visual */}
+        <div className="mt-16 rounded-2xl overflow-hidden shadow-xl bg-[#F5F1EC]">
+          <div className="relative aspect-video">
+            <Image
+              src="/images/treatment-areas.png"
+              alt="ASPIRE eligible treatment areas"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              quality={90}
+            />
+          </div>
+          <div className="p-6 bg-white">
+            <h4 className="text-lg font-semibold text-[#4A5D7F] mb-2">
+              Eligible Treatment Areas
+            </h4>
+            <p className="text-sm text-[#2C2C2C]">
+              Earn points on qualifying treatments across multiple facial zones including
+              frown lines, cheeks, lips, and more.
+            </p>
           </div>
         </div>
       </div>

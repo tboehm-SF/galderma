@@ -17,10 +17,10 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50 shadow-sm">
-      {/* Demo Purposes Badge */}
-      <div className="absolute top-2 left-2 bg-amber-100 border border-amber-300 px-3 py-1 rounded-md z-50">
-        <span className="text-xs font-semibold text-amber-800 uppercase tracking-wide">
-          Demo Purposes
+      {/* Demo Purposes Badge - Elegant & Subtle */}
+      <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-full shadow-sm z-50">
+        <span className="text-[10px] font-medium text-gray-500 tracking-wider">
+          Demo Preview
         </span>
       </div>
 

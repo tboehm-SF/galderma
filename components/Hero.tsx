@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen bg-[#F5F1EC] pt-24 overflow-hidden">
@@ -38,35 +40,21 @@ export default function Hero() {
           {/* Right Hero Image */}
           <div className="relative h-[500px] lg:h-[700px] lg:absolute lg:right-0 lg:top-20 lg:w-[45%]">
             <div className="relative h-full w-full">
-              {/* Hero Image - Using CSS gradient to simulate photo */}
-              <div className="absolute inset-0 rounded-t-[300px] overflow-hidden">
-                {/* Simulated professional photo with skin tone gradients */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#E8C4A0] via-[#D4A88E] to-[#C19177]">
-                  {/* Face highlight */}
-                  <div className="absolute top-[30%] left-[40%] w-32 h-40 bg-gradient-radial from-[#F5E1D3] to-transparent opacity-60 blur-3xl"></div>
-
-                  {/* Hair simulation */}
-                  <div className="absolute top-0 left-[20%] w-[60%] h-[40%] bg-gradient-to-b from-[#8B6F47] to-transparent opacity-40"></div>
-
-                  {/* Shoulder definition */}
-                  <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-[#B08968] to-transparent opacity-50"></div>
-
-                  {/* Add a centered message */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg max-w-xs">
-                      <p className="text-sm text-[#4A5D7F] font-medium mb-2">
-                        🖼️ Hero Image Placeholder
-                      </p>
-                      <p className="text-xs text-gray-600">
-                        Replace with licensed patient photo from Galderma assets
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              {/* Hero Image */}
+              <div className="absolute inset-0 rounded-t-[300px] overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/hero-patient.png"
+                  alt="ASPIRE Galderma Rewards patient"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  quality={90}
+                />
               </div>
 
               {/* Disclaimer text overlay */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-xs sm:text-sm text-center px-4 drop-shadow-lg z-10">
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-xs sm:text-sm text-center px-4 drop-shadow-lg z-10 bg-black/30 backdrop-blur-sm py-2 px-4 rounded-full">
                 Actual patient. Individual results may vary.
               </div>
             </div>
