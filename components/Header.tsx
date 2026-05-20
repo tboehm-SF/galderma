@@ -8,6 +8,13 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50 shadow-sm">
+      {/* Demo Purposes Badge */}
+      <div className="absolute top-2 left-2 bg-amber-100 border border-amber-300 px-3 py-1 rounded-md z-50">
+        <span className="text-xs font-semibold text-amber-800 uppercase tracking-wide">
+          Demo Purposes
+        </span>
+      </div>
+
       <div className="flex items-center justify-between px-6 py-5 max-w-7xl mx-auto">
         {/* Hamburger Menu */}
         <button
