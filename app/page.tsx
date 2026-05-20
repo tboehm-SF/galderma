@@ -5,6 +5,7 @@ import HowItWorks from "@/components/HowItWorks";
 import TreatmentFinder from "@/components/TreatmentFinder";
 import Footer from "@/components/Footer";
 import ExploreRewards from "@/components/ExploreRewards";
+import QualifiedButton from "@/components/QualifiedButton";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       </main>
       <Footer />
       <ExploreRewards />
+      <QualifiedButton />
     </div>
   );
 }
