@@ -1,0 +1,28 @@
+{
+  "name": "Galderma ASPIRE Rewards",
+  "description": "ASPIRE Galderma Rewards landing page - Earn, redeem, save & repeat",
+  "repository": "https://github.com/YOUR_USERNAME/galderma",
+  "logo": "",
+  "keywords": ["nextjs", "react", "typescript", "galderma", "healthcare"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "NEXT_TELEMETRY_DISABLED": {
+      "description": "Disable Next.js telemetry",
+      "value": "1"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}
