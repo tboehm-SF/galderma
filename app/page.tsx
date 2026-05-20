@@ -8,16 +8,18 @@ import ExploreRewards from "@/components/ExploreRewards";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <Perks />
-        <HowItWorks />
-        <TreatmentFinder />
-      </main>
-      <Footer />
+    <>
+      <div className="flex flex-col min-h-screen" id="website-content">
+        <Header />
+        <main className="flex-1">
+          <Hero />
+          <Perks />
+          <HowItWorks />
+          <TreatmentFinder />
+        </main>
+        <Footer />
+      </div>
       <ExploreRewards />
-    </div>
+    </>
   );
 }
