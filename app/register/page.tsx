@@ -4,16 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
-type PracticeType = "single" | "multiple" | null;
-type MultipleOption = "manage-multiple" | "manage-one" | null;
+type InquiryType = "practice" | "member" | null;
 
 export default function RegisterPage() {
   const [mckessonId, setMckessonId] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [practiceType, setPracticeType] = useState<PracticeType>(null);
-  const [multipleOption, setMultipleOption] = useState<MultipleOption>(null);
+  const [inquiryType, setInquiryType] = useState<InquiryType>(null);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -142,91 +140,50 @@ export default function RegisterPage() {
               />
             </div>
 
-            {/* Practice Type Selection */}
+            {/* Inquiry Type Selection */}
             <div className="pt-4">
               <p className="text-[15px] text-[#2C2C2C]/80 mb-5 font-light">
-                Please select the option that best describes your practice.
+                Are you inquiring about your practice or an ASPIRE member? <span className="text-red-400">*</span>
               </p>
 
               <div className="space-y-3">
-                {/* Single Location */}
+                {/* Practice */}
                 <label className={`flex items-start gap-4 p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
-                  practiceType === "single"
+                  inquiryType === "practice"
                     ? "border-[#4A5D7F] bg-[#4A5D7F]/5"
                     : "border-gray-200 hover:border-[#4A5D7F]/30 hover:bg-[#F5F1EC]/30"
                 }`}>
                   <input
                     type="radio"
-                    name="practiceType"
-                    value="single"
-                    checked={practiceType === "single"}
-                    onChange={() => { setPracticeType("single"); setMultipleOption(null); }}
+                    name="inquiryType"
+                    value="practice"
+                    checked={inquiryType === "practice"}
+                    onChange={() => setInquiryType("practice")}
                     className="mt-1 w-4 h-4 text-[#4A5D7F] border-gray-300 focus:ring-[#4A5D7F]"
                   />
-                  <span className="text-sm text-[#2C2C2C]/80">
-                    This account is for a single location.
+                  <span className="text-sm text-[#2C2C2C]/80 font-medium">
+                    Practice
                   </span>
                 </label>
 
-                {/* Multiple Locations */}
+                {/* ASPIRE Member */}
                 <label className={`flex items-start gap-4 p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
-                  practiceType === "multiple"
+                  inquiryType === "member"
                     ? "border-[#4A5D7F] bg-[#4A5D7F]/5"
                     : "border-gray-200 hover:border-[#4A5D7F]/30 hover:bg-[#F5F1EC]/30"
                 }`}>
                   <input
                     type="radio"
-                    name="practiceType"
-                    value="multiple"
-                    checked={practiceType === "multiple"}
-                    onChange={() => setPracticeType("multiple")}
+                    name="inquiryType"
+                    value="member"
+                    checked={inquiryType === "member"}
+                    onChange={() => setInquiryType("member")}
                     className="mt-1 w-4 h-4 text-[#4A5D7F] border-gray-300 focus:ring-[#4A5D7F]"
                   />
-                  <span className="text-sm text-[#2C2C2C]/80">
-                    This account is for multiple locations.
+                  <span className="text-sm text-[#2C2C2C]/80 font-medium">
+                    ASPIRE Member
                   </span>
                 </label>
-
-                {/* Sub-options for multiple locations */}
-                {practiceType === "multiple" && (
-                  <div className="ml-8 space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
-                    <label className={`flex items-start gap-4 p-3.5 rounded-xl border cursor-pointer transition-all duration-300 ${
-                      multipleOption === "manage-multiple"
-                        ? "border-[#4A5D7F]/50 bg-[#4A5D7F]/5"
-                        : "border-gray-200 hover:border-[#4A5D7F]/20"
-                    }`}>
-                      <input
-                        type="radio"
-                        name="multipleOption"
-                        value="manage-multiple"
-                        checked={multipleOption === "manage-multiple"}
-                        onChange={() => setMultipleOption("manage-multiple")}
-                        className="mt-0.5 w-3.5 h-3.5 text-[#4A5D7F] border-gray-300 focus:ring-[#4A5D7F]"
-                      />
-                      <span className="text-sm text-[#2C2C2C]/70 font-light">
-                        I&apos;ll manage multiple practices from this account.
-                      </span>
-                    </label>
-
-                    <label className={`flex items-start gap-4 p-3.5 rounded-xl border cursor-pointer transition-all duration-300 ${
-                      multipleOption === "manage-one"
-                        ? "border-[#4A5D7F]/50 bg-[#4A5D7F]/5"
-                        : "border-gray-200 hover:border-[#4A5D7F]/20"
-                    }`}>
-                      <input
-                        type="radio"
-                        name="multipleOption"
-                        value="manage-one"
-                        checked={multipleOption === "manage-one"}
-                        onChange={() => setMultipleOption("manage-one")}
-                        className="mt-0.5 w-3.5 h-3.5 text-[#4A5D7F] border-gray-300 focus:ring-[#4A5D7F]"
-                      />
-                      <span className="text-sm text-[#2C2C2C]/70 font-light">
-                        I&apos;ll only manage one practice location from this account.
-                      </span>
-                    </label>
-                  </div>
-                )}
               </div>
             </div>
 
