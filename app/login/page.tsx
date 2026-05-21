@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Eye, EyeOff, Lock } from "lucide-react";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -17,11 +19,10 @@ export default function LoginPage() {
     setError("");
     setIsLoading(true);
 
-    // Simulate login attempt
+    // Simulate login — redirect to portal after brief delay
     setTimeout(() => {
-      setIsLoading(false);
-      setError("This is a demo. Login functionality is not active.");
-    }, 1500);
+      router.push("/portal");
+    }, 1200);
   };
 
   return (

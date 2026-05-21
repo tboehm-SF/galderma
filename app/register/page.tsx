@@ -33,10 +33,10 @@ export default function RegisterPage() {
             Thank you for registering with ASPIRE Galderma Practice Rewards. You will receive a confirmation email shortly.
           </p>
           <Link
-            href="/"
+            href="/portal"
             className="inline-flex items-center gap-2 btn-primary text-white px-8 py-3.5 rounded-full text-sm font-semibold tracking-wider uppercase"
           >
-            Return Home
+            Go to Dashboard
           </Link>
         </div>
       </div>
