@@ -9,42 +9,42 @@ export default function Footer() {
   const [sculptraOpen, setSculptraOpen] = useState(false);
 
   return (
-    <footer className="bg-white border-t border-gray-200">
+    <footer className="bg-white border-t border-gray-100">
       {/* Product Safety Information Sections */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-gray-100">
         {/* Dysport Safety Info */}
-        <div className="border-b border-gray-100">
+        <div className="border-b border-gray-50">
           <button
             onClick={() => setDysportOpen(!dysportOpen)}
-            className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
+            className="w-full px-6 lg:px-10 py-4.5 flex items-center justify-between hover:bg-[#F5F1EC]/30 transition-colors duration-300 text-left group"
             aria-expanded={dysportOpen}
           >
-            <span className="text-sm font-medium text-[#2C2C2C]">
+            <span className="text-sm font-medium text-[#2C2C2C]/80 group-hover:text-[#4A5D7F] transition-colors duration-300">
               Please read full Important Safety Information for Dysport®
             </span>
             {dysportOpen ? (
-              <ChevronUp className="w-5 h-5 text-[#4A5D7F] flex-shrink-0" />
+              <ChevronUp className="w-4 h-4 text-[#4A5D7F] flex-shrink-0 transition-transform duration-300" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-[#4A5D7F] flex-shrink-0" />
+              <ChevronDown className="w-4 h-4 text-[#4A5D7F] flex-shrink-0 group-hover:translate-y-0.5 transition-transform duration-300" />
             )}
           </button>
 
           {dysportOpen && (
-            <div className="px-6 py-6 bg-gray-50 text-sm text-[#2C2C2C] leading-relaxed space-y-4">
-              <p className="font-semibold">Important Safety Information for Dysport® (abobotulinumtoxinA)</p>
-              <p>
+            <div className="px-6 lg:px-10 py-6 bg-[#F5F1EC]/20 text-sm text-[#2C2C2C]/70 leading-relaxed space-y-4 border-t border-gray-50">
+              <p className="font-semibold text-[#2C2C2C]">Important Safety Information for Dysport® (abobotulinumtoxinA)</p>
+              <p className="font-light">
                 This section contains important prescribing information, contraindications,
                 warnings including Distant Spread of Toxin Effect Boxed Warning, and adverse reactions.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <a href="#" className="text-[#4A5D7F] hover:underline inline-flex items-center gap-1">
-                  Full Prescribing Information <ExternalLink className="w-4 h-4" />
+                <a href="#" className="text-[#4A5D7F] hover:text-[#3A4D6F] inline-flex items-center gap-1.5 text-xs font-medium hover:underline underline-offset-4">
+                  Full Prescribing Information <ExternalLink className="w-3 h-3" />
                 </a>
-                <a href="#" className="text-[#4A5D7F] hover:underline inline-flex items-center gap-1">
-                  Medication Guide <ExternalLink className="w-4 h-4" />
+                <a href="#" className="text-[#4A5D7F] hover:text-[#3A4D6F] inline-flex items-center gap-1.5 text-xs font-medium hover:underline underline-offset-4">
+                  Medication Guide <ExternalLink className="w-3 h-3" />
                 </a>
-                <a href="#" className="text-[#4A5D7F] hover:underline inline-flex items-center gap-1">
-                  DysportUSA.com <ExternalLink className="w-4 h-4" />
+                <a href="#" className="text-[#4A5D7F] hover:text-[#3A4D6F] inline-flex items-center gap-1.5 text-xs font-medium hover:underline underline-offset-4">
+                  DysportUSA.com <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
@@ -52,32 +52,32 @@ export default function Footer() {
         </div>
 
         {/* Restylane Safety Info */}
-        <div className="border-b border-gray-100">
+        <div className="border-b border-gray-50">
           <button
             onClick={() => setRestylaneOpen(!restylaneOpen)}
-            className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
+            className="w-full px-6 lg:px-10 py-4.5 flex items-center justify-between hover:bg-[#F5F1EC]/30 transition-colors duration-300 text-left group"
             aria-expanded={restylaneOpen}
           >
-            <span className="text-sm font-medium text-[#2C2C2C]">
+            <span className="text-sm font-medium text-[#2C2C2C]/80 group-hover:text-[#4A5D7F] transition-colors duration-300">
               Please read full Important Safety Information for Restylane® products
             </span>
             {restylaneOpen ? (
-              <ChevronUp className="w-5 h-5 text-[#4A5D7F] flex-shrink-0" />
+              <ChevronUp className="w-4 h-4 text-[#4A5D7F] flex-shrink-0 transition-transform duration-300" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-[#4A5D7F] flex-shrink-0" />
+              <ChevronDown className="w-4 h-4 text-[#4A5D7F] flex-shrink-0 group-hover:translate-y-0.5 transition-transform duration-300" />
             )}
           </button>
 
           {restylaneOpen && (
-            <div className="px-6 py-6 bg-gray-50 text-sm text-[#2C2C2C] leading-relaxed space-y-4">
-              <p className="font-semibold">Important Safety Information for Restylane® Dermal Fillers</p>
-              <p>
+            <div className="px-6 lg:px-10 py-6 bg-[#F5F1EC]/20 text-sm text-[#2C2C2C]/70 leading-relaxed space-y-4 border-t border-gray-50">
+              <p className="font-semibold text-[#2C2C2C]">Important Safety Information for Restylane® Dermal Fillers</p>
+              <p className="font-light">
                 Important safety information, indications, contraindications, and adverse reactions
                 for the Restylane family of products.
               </p>
               <div className="pt-2">
-                <a href="#" className="text-[#4A5D7F] hover:underline inline-flex items-center gap-1">
-                  RestylaneUSA.com <ExternalLink className="w-4 h-4" />
+                <a href="#" className="text-[#4A5D7F] hover:text-[#3A4D6F] inline-flex items-center gap-1.5 text-xs font-medium hover:underline underline-offset-4">
+                  RestylaneUSA.com <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
@@ -88,31 +88,31 @@ export default function Footer() {
         <div>
           <button
             onClick={() => setSculptraOpen(!sculptraOpen)}
-            className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
+            className="w-full px-6 lg:px-10 py-4.5 flex items-center justify-between hover:bg-[#F5F1EC]/30 transition-colors duration-300 text-left group"
             aria-expanded={sculptraOpen}
           >
-            <span className="text-sm font-medium text-[#2C2C2C]">
+            <span className="text-sm font-medium text-[#2C2C2C]/80 group-hover:text-[#4A5D7F] transition-colors duration-300">
               Please read full Important Safety Information for Sculptra® Aesthetic
             </span>
             {sculptraOpen ? (
-              <ChevronUp className="w-5 h-5 text-[#4A5D7F] flex-shrink-0" />
+              <ChevronUp className="w-4 h-4 text-[#4A5D7F] flex-shrink-0 transition-transform duration-300" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-[#4A5D7F] flex-shrink-0" />
+              <ChevronDown className="w-4 h-4 text-[#4A5D7F] flex-shrink-0 group-hover:translate-y-0.5 transition-transform duration-300" />
             )}
           </button>
 
           {sculptraOpen && (
-            <div className="px-6 py-6 bg-gray-50 text-sm text-[#2C2C2C] leading-relaxed space-y-4">
-              <p className="font-semibold">Important Safety Information for Sculptra® Aesthetic</p>
-              <p>
+            <div className="px-6 lg:px-10 py-6 bg-[#F5F1EC]/20 text-sm text-[#2C2C2C]/70 leading-relaxed space-y-4 border-t border-gray-50">
+              <p className="font-semibold text-[#2C2C2C]">Important Safety Information for Sculptra® Aesthetic</p>
+              <p className="font-light">
                 Important safety information, indications for use, contraindications, and adverse reactions.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <a href="#" className="text-[#4A5D7F] hover:underline inline-flex items-center gap-1">
-                  Instructions for Use <ExternalLink className="w-4 h-4" />
+                <a href="#" className="text-[#4A5D7F] hover:text-[#3A4D6F] inline-flex items-center gap-1.5 text-xs font-medium hover:underline underline-offset-4">
+                  Instructions for Use <ExternalLink className="w-3 h-3" />
                 </a>
-                <a href="#" className="text-[#4A5D7F] hover:underline inline-flex items-center gap-1">
-                  SculptraUSA.com <ExternalLink className="w-4 h-4" />
+                <a href="#" className="text-[#4A5D7F] hover:text-[#3A4D6F] inline-flex items-center gap-1.5 text-xs font-medium hover:underline underline-offset-4">
+                  SculptraUSA.com <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
@@ -121,57 +121,58 @@ export default function Footer() {
       </div>
 
       {/* Footer Links */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
+        {/* Brand mark */}
+        <div className="text-center mb-10">
+          <span className="text-lg font-light tracking-[0.3em] text-[#4A5D7F]/60">
+            ASPIRE
+          </span>
+        </div>
+
         {/* Main Footer Links - Horizontal */}
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-8 text-sm">
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-8 text-[13px]">
+          <a href="#" className="text-[#2C2C2C]/70 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Prescribing Information
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/70 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Legal
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/70 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             FAQ
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/70 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Contact ASPIRE
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/70 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Terms & Conditions
           </a>
         </div>
 
         {/* Secondary Links */}
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-8 text-sm">
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10 text-[13px]">
+          <a href="#" className="text-[#2C2C2C]/50 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             About Galderma
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/50 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Contact Galderma
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/50 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Privacy Policy
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/50 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Cookie Policy
           </a>
-          <span className="text-gray-300">|</span>
-          <a href="#" className="text-[#2C2C2C] hover:text-[#4A5D7F] transition-colors">
+          <a href="#" className="text-[#2C2C2C]/50 hover:text-[#4A5D7F] transition-colors duration-300 font-light">
             Consumer Health Data Privacy Policy
           </a>
         </div>
 
         {/* Copyright */}
-        <div className="pt-6 border-t border-gray-200 text-xs text-gray-600 text-center space-y-2">
-          <p>© {new Date().getFullYear()} Galderma Laboratories, L.P. All rights reserved.</p>
-          <p className="text-gray-500">
+        <div className="pt-8 border-t border-gray-100 text-center space-y-2">
+          <p className="text-xs text-gray-400 font-light">
+            © {new Date().getFullYear()} Galderma Laboratories, L.P. All rights reserved.
+          </p>
+          <p className="text-[11px] text-gray-300 font-light">
             Dysport®, Restylane®, and Sculptra® are registered trademarks of Galderma.
           </p>
         </div>

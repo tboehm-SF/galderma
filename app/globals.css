@@ -4,22 +4,247 @@
   --background: #ffffff;
   --foreground: #2C2C2C;
   --navy: #4A5D7F;
+  --navy-dark: #3A4D6F;
+  --navy-light: #5A6D8F;
   --cream: #F5F1EC;
+  --cream-dark: #EDE7E0;
+  --gold: #C9A96E;
+  --gold-light: #D4BC8E;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-navy: var(--navy);
+  --color-navy-dark: var(--navy-dark);
+  --color-navy-light: var(--navy-light);
   --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Luxury grain texture overlay for depth */
+.grain-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Premium layered shadow system */
+.shadow-luxury {
+  box-shadow:
+    0 1px 2px rgba(74, 93, 127, 0.04),
+    0 4px 8px rgba(74, 93, 127, 0.06),
+    0 16px 32px rgba(74, 93, 127, 0.08);
+}
+
+.shadow-luxury-hover {
+  box-shadow:
+    0 2px 4px rgba(74, 93, 127, 0.06),
+    0 8px 16px rgba(74, 93, 127, 0.08),
+    0 24px 48px rgba(74, 93, 127, 0.12);
+}
+
+.shadow-luxury-xl {
+  box-shadow:
+    0 4px 6px rgba(74, 93, 127, 0.04),
+    0 12px 24px rgba(74, 93, 127, 0.08),
+    0 32px 64px rgba(74, 93, 127, 0.14);
+}
+
+/* Glassmorphic header */
+.header-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid rgba(74, 93, 127, 0.08);
+}
+
+.header-glass-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px) saturate(2);
+  -webkit-backdrop-filter: blur(24px) saturate(2);
+  border-bottom: 1px solid rgba(74, 93, 127, 0.12);
+}
+
+/* Elegant button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  box-shadow:
+    0 2px 4px rgba(74, 93, 127, 0.2),
+    0 8px 16px rgba(74, 93, 127, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 8px rgba(74, 93, 127, 0.25),
+    0 12px 24px rgba(74, 93, 127, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary {
+  border: 1.5px solid var(--navy);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--navy);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-secondary:hover {
+  color: white;
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
+
+/* Scroll-triggered fade-in animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 0.4s; }
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section wave divider */
+.wave-divider {
+  position: relative;
+}
+
+.wave-divider::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.wave-divider-cream::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23F5F1EC' d='M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+}
+
+/* Timeline connector line */
+.timeline-connector {
+  position: relative;
+}
+
+.timeline-connector::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--navy), var(--navy), transparent);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* Card hover lift effect */
+.card-lift {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Subtle pulse glow for interactive elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(74, 93, 127, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(74, 93, 127, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Gold accent shimmer for premium feel */
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--navy) 0%,
+    var(--gold) 45%,
+    var(--gold-light) 55%,
+    var(--navy) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gold-shimmer 4s ease-in-out infinite;
 }
 
 @keyframes shimmer {
@@ -85,4 +310,22 @@ body {
 
 .animate-zoom-street {
   animation: zoom-to-street 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Elegant focus ring */
+*:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.4s ease;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(74, 93, 127, 0.15);
+  color: var(--navy-dark);
 }

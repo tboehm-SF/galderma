@@ -1,10 +1,19 @@
 "use client";
 
 import { Menu, User, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const menuItems = [
     { label: "How It Works", href: "#" },
@@ -16,38 +25,55 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white z-50 shadow-sm">
-      {/* Demo Purposes Badge - Elegant & Subtle */}
-      <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-full shadow-sm z-50">
-        <span className="text-[10px] font-medium text-gray-500 tracking-wider">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        scrolled
+          ? "header-glass-scrolled py-3"
+          : "header-glass py-5"
+      }`}
+    >
+      {/* Demo Purposes Badge */}
+      <div className="absolute top-3 left-3 bg-white/80 backdrop-blur-md border border-gray-200/60 px-3 py-1.5 rounded-full shadow-sm z-50">
+        <span className="text-[10px] font-medium text-gray-400 tracking-wider uppercase">
           Demo Preview
         </span>
       </div>
 
-      <div className="flex items-center justify-between px-6 py-5 max-w-7xl mx-auto">
+      <div className="flex items-center justify-between px-6 lg:px-10 max-w-7xl mx-auto">
         {/* Hamburger Menu */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="p-2 hover:bg-gray-100 rounded-lg transition-colors z-50"
+          className="p-2.5 hover:bg-[#4A5D7F]/5 rounded-xl transition-all duration-300 z-50 group"
           aria-label="Open menu"
         >
-          <Menu className="w-6 h-6 text-[#4A5D7F]" strokeWidth={2} />
+          <Menu className="w-5 h-5 text-[#4A5D7F] group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
         </button>
 
         {/* ASPIRE Logo */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <span className="text-2xl font-light tracking-[0.3em] text-[#4A5D7F]">
+          <span className="text-2xl font-light tracking-[0.35em] text-[#4A5D7F] transition-all duration-300 hover:tracking-[0.4em]">
             ASPIRE
           </span>
         </div>
 
-        {/* Account Icon */}
-        <button
-          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          aria-label="Account"
-        >
-          <User className="w-8 h-8 text-[#4A5D7F]" strokeWidth={2} />
-        </button>
+        {/* Account & CTA */}
+        <div className="flex items-center gap-3">
+          <button
+            className={`hidden sm:inline-flex px-5 py-2 text-xs font-semibold tracking-wider uppercase rounded-full transition-all duration-400 ${
+              scrolled
+                ? "btn-primary text-white"
+                : "border border-[#4A5D7F]/30 text-[#4A5D7F] hover:bg-[#4A5D7F] hover:text-white hover:border-[#4A5D7F]"
+            }`}
+          >
+            Join Now
+          </button>
+          <button
+            className="p-2.5 hover:bg-[#4A5D7F]/5 rounded-xl transition-all duration-300 group"
+            aria-label="Account"
+          >
+            <User className="w-5 h-5 text-[#4A5D7F] group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Drawer */}
@@ -55,34 +81,34 @@ export default function Header() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 z-40"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300"
             onClick={() => setMenuOpen(false)}
           />
 
           {/* Menu Panel */}
-          <div className="fixed left-0 top-0 bottom-0 w-80 bg-white z-50 shadow-2xl overflow-y-auto">
+          <div className="fixed left-0 top-0 bottom-0 w-80 bg-white/95 backdrop-blur-xl z-50 shadow-luxury-xl overflow-y-auto">
             {/* Menu Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200">
-              <span className="text-xl font-light tracking-[0.2em] text-[#4A5D7F]">
+            <div className="flex items-center justify-between px-6 py-6 border-b border-gray-100">
+              <span className="text-xl font-light tracking-[0.25em] text-[#4A5D7F]">
                 ASPIRE
               </span>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-2 hover:bg-[#4A5D7F]/5 rounded-xl transition-all duration-300"
                 aria-label="Close menu"
               >
-                <X className="w-6 h-6 text-[#4A5D7F]" />
+                <X className="w-5 h-5 text-[#4A5D7F]" strokeWidth={1.5} />
               </button>
             </div>
 
             {/* Menu Items */}
-            <nav className="py-6">
+            <nav className="py-8">
               <ul className="space-y-1">
                 {menuItems.map((item, index) => (
                   <li key={index}>
                     <a
                       href={item.href}
-                      className="block px-6 py-3 text-base text-[#2C2C2C] hover:bg-[#F5F1EC] hover:text-[#4A5D7F] transition-colors"
+                      className="block px-8 py-3.5 text-[15px] text-[#2C2C2C] hover:bg-[#F5F1EC] hover:text-[#4A5D7F] hover:pl-10 transition-all duration-300 font-light"
                       onClick={() => setMenuOpen(false)}
                     >
                       {item.label}
@@ -92,12 +118,12 @@ export default function Header() {
               </ul>
 
               {/* CTA Buttons in Menu */}
-              <div className="mt-8 px-6 space-y-3">
-                <button className="w-full bg-[#4A5D7F] text-white px-6 py-3 rounded-full text-sm font-semibold uppercase hover:bg-[#3A4D6F] transition-colors">
+              <div className="mt-10 px-8 space-y-3">
+                <button className="w-full btn-primary text-white px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider">
                   Join Now
                 </button>
-                <button className="w-full border-2 border-[#4A5D7F] text-[#4A5D7F] px-6 py-3 rounded-full text-sm font-semibold uppercase hover:bg-[#4A5D7F] hover:text-white transition-colors">
-                  Sign In
+                <button className="w-full btn-secondary text-[#4A5D7F] px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider relative z-10">
+                  <span className="relative z-10">Sign In</span>
                 </button>
               </div>
             </nav>
