@@ -386,55 +386,146 @@ export default function ExploreHCP() {
       ),
       savings: (
         <div className="space-y-8">
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] text-white p-12 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-90 duration-800" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", animationDelay: "200ms" }}>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl animate-in fade-in duration-1200" style={{ animationDelay: "400ms" }} />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-400/10 rounded-full blur-3xl animate-in fade-in duration-1200" style={{ animationDelay: "600ms" }} />
+          {/* Hero — How It All Adds Up */}
+          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#3A4D6F] text-white p-12 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-90 duration-800" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", animationDelay: "200ms" }}>
+            {/* Animated background elements */}
+            <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-top-full" style={{ animationDelay: "400ms" }} />
+            <div className="absolute bottom-0 left-0 w-56 h-56 bg-amber-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-bottom-full" style={{ animationDelay: "600ms" }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl animate-in fade-in zoom-in-50 duration-1500" style={{ animationDelay: "800ms" }} />
+
+            {/* Subtle coin/money pattern */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='white' stroke-width='0.5'/%3E%3Ccircle cx='30' cy='30' r='4' fill='none' stroke='white' stroke-width='0.3'/%3E%3C/svg%3E")`
+            }} />
+
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] mb-6 border border-white/10">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] mb-6 border border-white/10 animate-in fade-in slide-in-from-left-8 duration-500" style={{ animationDelay: "600ms" }}>
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Financial Benefits
               </div>
-              <h3 className="font-serif text-5xl font-light mb-4 tracking-tight animate-in fade-in slide-in-from-left-12 zoom-in-95 duration-700" style={{ animationDelay: "750ms" }}>
-                Savings & <span className="font-semibold">Rebates</span>
+              <h3 className="font-serif text-5xl font-light mb-4 tracking-tight animate-in fade-in slide-in-from-left-12 zoom-in-95 duration-700" style={{ animationDelay: "750ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}>
+                How It All{" "}
+                <span className="font-semibold animate-in fade-in zoom-in-50 duration-500" style={{ animationDelay: "950ms" }}>
+                  Adds Up
+                </span>
               </h3>
-              <p className="text-white/70 text-base leading-relaxed max-w-2xl animate-in fade-in slide-in-from-left-8 duration-600" style={{ animationDelay: "1100ms" }}>
-                Valuable discounts and rebates that directly benefit your practice bottom line while keeping patients happy.
+              <p className="text-white/80 text-base leading-relaxed max-w-2xl animate-in fade-in slide-in-from-left-8 duration-600" style={{ animationDelay: "1100ms" }}>
+                When you join ASPIRE, you automatically unlock valuable product discounts, rebates and rewards. Plus, you can offer patients significant savings across the Galderma aesthetic portfolio to drive engagement and grow your business.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          {/* Three Pillars of Value */}
+          <div className="space-y-4">
             {[
-              { label: "Practice Rebates", value: `${count30}%`, desc: "On qualifying purchases", icon: "💰" },
-              { label: "Patient Savings", value: `$${count45}+`, desc: "Per treatment you can extend", icon: "🎁" },
-              { label: "Portfolio Coverage", value: `${count2x}x`, desc: "More products than competitors", icon: "📦" },
-              { label: "Annual Value", value: `$${count500}+`, desc: "Average practice savings", icon: "📈" },
-            ].map((stat, i) => (
-              <div key={stat.label} className="bg-white/80 backdrop-blur-xl border border-[#4A5D7F]/10 rounded-2xl p-6 text-center animate-in fade-in zoom-in-95" style={{ animationDelay: `${1300 + i * 150}ms` }}>
-                <div className="text-3xl mb-2">{stat.icon}</div>
-                <p className="font-serif text-3xl font-semibold text-[#4A5D7F] mb-1">{stat.value}</p>
-                <p className="text-sm font-semibold text-[#4A5D7F] mb-1">{stat.label}</p>
-                <p className="text-xs text-gray-500">{stat.desc}</p>
+              {
+                icon: "🏷️",
+                title: "Product Discounts",
+                description: "Exclusive pricing on the full Galderma aesthetic portfolio — automatically unlocked when you enroll.",
+                highlight: `${count30}%`,
+                highlightLabel: "Avg. Discount",
+                gradient: "from-emerald-50 to-teal-50",
+              },
+              {
+                icon: "💰",
+                title: "Practice Rebates",
+                description: "Valuable rebates credited directly to your practice account on qualifying product purchases.",
+                highlight: `$${count500}+`,
+                highlightLabel: "Annual Value",
+                gradient: "from-amber-50 to-orange-50",
+              },
+              {
+                icon: "🎁",
+                title: "Patient Savings",
+                description: "Offer your patients significant savings across treatments — driving engagement, loyalty, and repeat visits.",
+                highlight: `$${count45}+`,
+                highlightLabel: "Per Treatment",
+                gradient: "from-blue-50 to-cyan-50",
+              },
+            ].map((pillar, i) => (
+              <div
+                key={pillar.title}
+                className="group relative bg-white/90 backdrop-blur-xl border-2 border-[#4A5D7F]/8 hover:border-[#4A5D7F]/25 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 cursor-default animate-in fade-in slide-in-from-bottom-8 zoom-in-95"
+                style={{ animationDelay: `${1300 + i * 200}ms`, animationDuration: "700ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
+              >
+                {/* Hover gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-all duration-700`} />
+
+                <div className="relative p-7">
+                  <div className="flex items-center gap-5">
+                    {/* Icon */}
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#F5F1EC] to-white flex items-center justify-center flex-shrink-0 shadow-lg border border-[#4A5D7F]/8 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
+                      <span className="text-3xl">{pillar.icon}</span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-serif text-xl font-semibold text-[#4A5D7F] mb-1 tracking-tight">{pillar.title}</h4>
+                      <p className="text-sm text-[#2C2C2C]/70 leading-relaxed font-light">{pillar.description}</p>
+                    </div>
+
+                    {/* Metric Badge */}
+                    <div className="flex-shrink-0 text-center px-4 py-3 bg-[#4A5D7F]/5 group-hover:bg-white/80 rounded-2xl transition-colors duration-300">
+                      <p className="font-serif text-2xl font-semibold text-[#4A5D7F]">{pillar.highlight}</p>
+                      <p className="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">{pillar.highlightLabel}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom accent */}
+                <div className="h-1 bg-gradient-to-r from-[#4A5D7F]/0 via-[#4A5D7F]/15 to-[#4A5D7F]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
           </div>
 
-          <div className="bg-gradient-to-br from-[#F5F1EC] to-white p-8 rounded-2xl border border-[#4A5D7F]/10 shadow-lg animate-in fade-in slide-in-from-bottom-8" style={{ animationDelay: "2000ms" }}>
-            <h4 className="font-serif text-xl font-semibold text-[#4A5D7F] mb-4">How Rebates Work</h4>
-            <div className="space-y-3">
+          {/* Visual Equation: Discounts + Rebates + Patient Savings = Growth */}
+          <div className="bg-gradient-to-br from-[#F5F1EC] to-white p-8 rounded-3xl border border-[#4A5D7F]/10 shadow-lg animate-in fade-in slide-in-from-bottom-8 zoom-in-95" style={{ animationDelay: "2100ms", animationDuration: "800ms" }}>
+            <div className="text-center mb-6">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">The ASPIRE Equation</p>
+            </div>
+
+            <div className="flex items-center justify-center gap-3 flex-wrap animate-in fade-in duration-700" style={{ animationDelay: "2300ms" }}>
               {[
-                "Purchase qualifying Galderma aesthetic products",
-                "Rebates automatically credited to your account",
-                "Extend patient savings to drive repeat visits",
-                "Track all savings through your ASPIRE dashboard",
-              ].map((step, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[#4A5D7F] flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-xs font-semibold">{i + 1}</span>
+                { label: "Discounts", icon: "🏷️" },
+                { label: "Rebates", icon: "💰" },
+                { label: "Patient Savings", icon: "🎁" },
+              ].map((item, i) => (
+                <div key={item.label} className="flex items-center gap-3">
+                  <div className="text-center px-4 py-3 bg-white rounded-xl shadow-sm border border-[#4A5D7F]/10 animate-in zoom-in-50 duration-500" style={{ animationDelay: `${2400 + i * 150}ms` }}>
+                    <span className="text-xl block mb-1">{item.icon}</span>
+                    <span className="text-[10px] font-semibold text-[#4A5D7F] uppercase tracking-wider">{item.label}</span>
                   </div>
-                  <p className="text-sm text-gray-700">{step}</p>
+                  {i < 2 && (
+                    <span className="text-[#4A5D7F]/40 font-light text-2xl animate-in fade-in duration-300" style={{ animationDelay: `${2500 + i * 150}ms` }}>+</span>
+                  )}
                 </div>
               ))}
+
+              <span className="text-[#4A5D7F]/40 font-light text-2xl mx-2 animate-in fade-in duration-300" style={{ animationDelay: "2800ms" }}>=</span>
+
+              <div className="text-center px-6 py-3 bg-gradient-to-br from-[#4A5D7F] to-[#3A4D6F] rounded-xl shadow-lg animate-in zoom-in-50 duration-500" style={{ animationDelay: "2900ms" }}>
+                <span className="text-xl block mb-1">📈</span>
+                <span className="text-[10px] font-semibold text-white uppercase tracking-wider">Business Growth</span>
+              </div>
+            </div>
+
+            <p className="text-center text-sm text-gray-500 mt-6 font-light max-w-md mx-auto animate-in fade-in duration-500" style={{ animationDelay: "3100ms" }}>
+              Everything unlocks automatically — no additional cost, no complex activation.
+            </p>
+          </div>
+
+          {/* CTA */}
+          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] p-8 rounded-3xl overflow-hidden shadow-xl animate-in fade-in zoom-in-95" style={{ animationDelay: "3300ms", animationDuration: "700ms" }}>
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C9A96E]/40 to-transparent" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
+            <div className="relative z-10 text-center text-white">
+              <h4 className="font-serif text-2xl font-semibold mb-3 animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3500ms" }}>Start Saving Today</h4>
+              <p className="text-white/70 text-sm mb-6 max-w-md mx-auto animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3600ms" }}>
+                Enroll in ASPIRE and unlock discounts, rebates, and patient savings immediately
+              </p>
+              <button className="px-10 py-4 bg-white text-[#4A5D7F] rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-xl animate-in zoom-in duration-500" style={{ animationDelay: "3700ms" }}>
+                ENROLL NOW →
+              </button>
             </div>
           </div>
         </div>
