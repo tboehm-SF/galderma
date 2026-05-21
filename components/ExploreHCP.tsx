@@ -200,46 +200,187 @@ export default function ExploreHCP() {
     const panels: Record<PanelId, React.ReactElement> = {
       tools: (
         <div className="space-y-8">
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] text-white p-12 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-90 duration-800" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", animationDelay: "200ms" }}>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-top-full" style={{ animationDelay: "400ms" }} />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-bottom-full" style={{ animationDelay: "600ms" }} />
+          {/* Hero Header */}
+          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#3A4D6F] text-white p-12 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-90 duration-800" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", animationDelay: "200ms" }}>
+            {/* Animated background particles */}
+            <div className="absolute top-0 right-0 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-top-full" style={{ animationDelay: "400ms" }} />
+            <div className="absolute bottom-0 left-0 w-56 h-56 bg-purple-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-bottom-full" style={{ animationDelay: "600ms" }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl animate-in fade-in zoom-in-50 duration-1500" style={{ animationDelay: "800ms" }} />
+
+            {/* Grid pattern overlay */}
+            <div className="absolute inset-0 opacity-[0.04]" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`
+            }} />
+
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] mb-6 border border-white/10 animate-in fade-in slide-in-from-left-8 duration-500" style={{ animationDelay: "600ms" }}>
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Practice Intelligence
+                ASPIRE Practice Intelligence
               </div>
-              <h3 className="font-serif text-5xl font-light mb-4 tracking-tight animate-in fade-in slide-in-from-left-12 zoom-in-95 duration-700" style={{ animationDelay: "750ms" }}>
-                Your <span className="font-semibold">Toolkit</span>
+              <h3 className="font-serif text-5xl font-light mb-4 tracking-tight animate-in fade-in slide-in-from-left-12 zoom-in-95 duration-700" style={{ animationDelay: "750ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}>
+                Unlock Powerful{" "}
+                <span className="font-semibold animate-in fade-in zoom-in-50 duration-500" style={{ animationDelay: "950ms" }}>
+                  Practice Tools
+                </span>
               </h3>
               <p className="text-white/70 text-base leading-relaxed max-w-2xl animate-in fade-in slide-in-from-left-8 duration-600" style={{ animationDelay: "1100ms" }}>
-                Powerful tools designed to help you understand your patients better and strengthen your practice.
+                Powerful, business-building tools designed to position your practice for long-term success and patient satisfaction.
               </p>
             </div>
           </div>
 
-          <div className="space-y-4">
+          {/* Four Practice Tools — Full Cards */}
+          <div className="space-y-5">
             {[
-              { icon: "📊", name: "Patient Insights Dashboard", desc: "Customized data to identify opportunities", detail: "Track patient activity, appointment frequency, and treatment preferences" },
-              { icon: "📧", name: "Branded Communications", desc: "Strategic engagement messaging", detail: "Automated patient outreach with your practice branding" },
-              { icon: "📚", name: "Educational Resources", desc: "Treatment education assets", detail: "Patient-facing content about Galderma aesthetic treatments" },
+              {
+                icon: "📊",
+                emoji: "📈",
+                title: "Leverage Patient Insights",
+                description: "Access customized data to help identify new patient opportunities and drive business.",
+                gradient: "from-blue-50 to-cyan-50",
+                hoverGradient: "group-hover:from-blue-100 group-hover:to-cyan-100",
+                metrics: [
+                  { label: "Data Points", value: "50+" },
+                  { label: "Insights/Mo", value: "12" },
+                ],
+                detail: "Track appointment trends, treatment preferences, and engagement patterns to make informed decisions about your practice growth strategy."
+              },
+              {
+                icon: "💬",
+                emoji: "📧",
+                title: "Cultivate Patient Relationships",
+                description: "Send strategic, branded communications to help encourage engagement and support retention.",
+                gradient: "from-purple-50 to-pink-50",
+                hoverGradient: "group-hover:from-purple-100 group-hover:to-pink-100",
+                metrics: [
+                  { label: "Templates", value: "20+" },
+                  { label: "Avg Open Rate", value: "42%" },
+                ],
+                detail: "Automated, personalized outreach that keeps your practice top-of-mind while respecting patient preferences and privacy."
+              },
+              {
+                icon: "💰",
+                emoji: "🏷️",
+                title: "Earn Savings",
+                description: "Get valuable rebates for your practice and exclusive savings to extend to your patients.",
+                gradient: "from-amber-50 to-orange-50",
+                hoverGradient: "group-hover:from-amber-100 group-hover:to-orange-100",
+                metrics: [
+                  { label: "Avg Savings", value: "$500+/yr" },
+                  { label: "Patient Value", value: "$45+" },
+                ],
+                detail: "Automatic rebates credited to your account, plus patient-facing savings that incentivize treatment loyalty and repeat visits."
+              },
+              {
+                icon: "📚",
+                emoji: "🎓",
+                title: "Utilize Treatment Resources",
+                description: "Take advantage of educational assets to help support your patients in their aesthetic journey.",
+                gradient: "from-emerald-50 to-teal-50",
+                hoverGradient: "group-hover:from-emerald-100 group-hover:to-teal-100",
+                metrics: [
+                  { label: "Resources", value: "100+" },
+                  { label: "Categories", value: "8" },
+                ],
+                detail: "Clinically-backed educational materials covering the full Galderma portfolio — from consultation guides to post-treatment care."
+              },
             ].map((tool, i) => (
               <div
-                key={tool.name}
-                className="group relative bg-white/80 backdrop-blur-xl border-2 border-[#4A5D7F]/10 hover:border-[#4A5D7F]/30 rounded-2xl p-6 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 cursor-default animate-in fade-in slide-in-from-left-8 zoom-in-90"
-                style={{ animationDelay: `${1300 + i * 200}ms`, animationDuration: "700ms" }}
+                key={tool.title}
+                className={`group relative bg-white/90 backdrop-blur-xl border-2 border-[#4A5D7F]/8 hover:border-[#4A5D7F]/25 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 cursor-default animate-in fade-in slide-in-from-bottom-8 zoom-in-95`}
+                style={{ animationDelay: `${1200 + i * 200}ms`, animationDuration: "700ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
               >
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F5F1EC] to-white flex items-center justify-center flex-shrink-0 shadow-md border border-[#4A5D7F]/10 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
-                    <span className="text-2xl">{tool.icon}</span>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-serif text-xl font-semibold text-[#4A5D7F] mb-1">{tool.name}</h4>
-                    <p className="text-sm text-gray-600 mb-2">{tool.desc}</p>
-                    <p className="text-xs text-gray-500 leading-relaxed">{tool.detail}</p>
+                {/* Hover gradient background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} ${tool.hoverGradient} opacity-0 group-hover:opacity-100 transition-all duration-700`} />
+
+                {/* Card content */}
+                <div className="relative p-7">
+                  <div className="flex items-start gap-5">
+                    {/* Icon */}
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#F5F1EC] to-white flex items-center justify-center flex-shrink-0 shadow-lg border border-[#4A5D7F]/8 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 animate-in zoom-in-50 duration-600" style={{ animationDelay: `${1300 + i * 200}ms` }}>
+                      <span className="text-3xl">{tool.icon}</span>
+                    </div>
+
+                    {/* Text Content */}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-serif text-[22px] font-semibold text-[#4A5D7F] mb-2 tracking-tight animate-in fade-in slide-in-from-right-4 duration-500" style={{ animationDelay: `${1350 + i * 200}ms` }}>
+                        {tool.title}
+                      </h4>
+                      <p className="text-[15px] text-[#2C2C2C]/80 leading-relaxed font-light mb-4 animate-in fade-in slide-in-from-right-4 duration-500" style={{ animationDelay: `${1450 + i * 200}ms` }}>
+                        {tool.description}
+                      </p>
+
+                      {/* Extended detail on hover / always visible */}
+                      <p className="text-xs text-gray-500 leading-relaxed mb-4 animate-in fade-in duration-500" style={{ animationDelay: `${1550 + i * 200}ms` }}>
+                        {tool.detail}
+                      </p>
+
+                      {/* Metrics Row */}
+                      <div className="flex gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: `${1650 + i * 200}ms` }}>
+                        {tool.metrics.map((metric) => (
+                          <div key={metric.label} className="inline-flex items-center gap-2 px-4 py-2 bg-[#4A5D7F]/5 group-hover:bg-white/80 rounded-xl transition-colors duration-300">
+                            <span className="font-serif text-lg font-semibold text-[#4A5D7F]">{metric.value}</span>
+                            <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">{metric.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Bottom accent bar */}
+                <div className="h-1 bg-gradient-to-r from-[#4A5D7F]/0 via-[#4A5D7F]/20 to-[#4A5D7F]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
+          </div>
+
+          {/* Summary Stats */}
+          <div className="bg-gradient-to-br from-[#F5F1EC] to-white p-8 rounded-3xl border border-[#4A5D7F]/10 shadow-lg animate-in fade-in slide-in-from-bottom-8 zoom-in-95" style={{ animationDelay: "2200ms", animationDuration: "800ms" }}>
+            <div className="text-center mb-6">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 animate-in fade-in duration-400" style={{ animationDelay: "2400ms" }}>Why Practices Choose ASPIRE</p>
+              <h4 className="font-serif text-2xl font-semibold text-[#4A5D7F] animate-in fade-in slide-in-from-bottom duration-500" style={{ animationDelay: "2500ms" }}>All-In-One Practice Growth Platform</h4>
+            </div>
+
+            <div className="grid grid-cols-4 gap-4 animate-in fade-in duration-600" style={{ animationDelay: "2600ms" }}>
+              {[
+                { icon: "📊", label: "Insights" },
+                { icon: "💬", label: "Comms" },
+                { icon: "💰", label: "Savings" },
+                { icon: "📚", label: "Education" },
+              ].map((item, i) => (
+                <div key={item.label} className="text-center group/item cursor-default animate-in zoom-in-50 duration-500" style={{ animationDelay: `${2700 + i * 100}ms` }}>
+                  <div className="w-12 h-12 mx-auto mb-2 bg-[#4A5D7F]/10 rounded-xl flex items-center justify-center group-hover/item:bg-[#4A5D7F] group-hover/item:scale-110 transition-all duration-300">
+                    <span className="text-xl group-hover/item:scale-125 transition-transform duration-300">{item.icon}</span>
+                  </div>
+                  <p className="text-[10px] font-semibold text-[#4A5D7F] uppercase tracking-wider">{item.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Connecting line visual */}
+            <div className="relative mt-4 mx-8">
+              <div className="h-[2px] bg-gradient-to-r from-transparent via-[#4A5D7F]/20 to-transparent rounded-full animate-in fade-in zoom-in-x-0 duration-1000" style={{ animationDelay: "2900ms" }} />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#4A5D7F] rounded-full animate-in zoom-in-0 duration-300" style={{ animationDelay: "3100ms" }} />
+            </div>
+
+            <p className="text-center text-sm text-gray-500 mt-4 font-light animate-in fade-in duration-500" style={{ animationDelay: "3200ms" }}>
+              All tools unlock automatically when you enroll — no additional cost.
+            </p>
+          </div>
+
+          {/* Enroll CTA */}
+          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] p-8 rounded-3xl overflow-hidden shadow-xl animate-in fade-in zoom-in-95" style={{ animationDelay: "3400ms", animationDuration: "700ms" }}>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C9A96E]/40 to-transparent" />
+            <div className="relative z-10 text-center text-white">
+              <h4 className="font-serif text-2xl font-semibold mb-3 animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3600ms" }}>Ready to Unlock Your Toolkit?</h4>
+              <p className="text-white/70 text-sm mb-6 max-w-md mx-auto animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3700ms" }}>
+                Enroll today and get instant access to all practice tools at no cost
+              </p>
+              <button className="px-10 py-4 bg-white text-[#4A5D7F] rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-xl animate-in zoom-in duration-500" style={{ animationDelay: "3800ms" }}>
+                ENROLL FOR ACCESS →
+              </button>
+            </div>
           </div>
         </div>
       ),
