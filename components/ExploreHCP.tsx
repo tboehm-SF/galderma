@@ -614,62 +614,79 @@ export default function ExploreHCP() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 left-6 z-50 bg-[#4A5D7F] text-white px-8 py-4 rounded-full shadow-2xl hover:bg-[#3A4D6F] transition-all hover:scale-105 flex items-center gap-3 font-semibold uppercase text-sm tracking-wider pulse-glow"
+          className="fixed bottom-5 left-5 z-50 bg-white/90 backdrop-blur-md text-[#4A5D7F] pl-4 pr-5 py-2.5 rounded-full shadow-lg border border-[#4A5D7F]/15 hover:shadow-xl hover:border-[#4A5D7F]/30 transition-all duration-300 hover:scale-[1.02] flex items-center gap-2.5 group"
         >
-          <Sparkles className="w-5 h-5" />
-          Explore Practice Rewards
+          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] flex items-center justify-center flex-shrink-0 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-white" />
+          </div>
+          <span className="text-xs font-medium tracking-wide text-[#4A5D7F]/90 group-hover:text-[#4A5D7F]">
+            Explore Rewards
+          </span>
         </button>
       )}
 
       {/* Adaptive Overlay */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex">
-          {/* Left Panel - Chat */}
-          <div className="w-80 flex-shrink-0 bg-[#F5F1EC]/95 backdrop-blur-xl border-r border-[#4A5D7F]/20 flex flex-col shadow-2xl animate-in slide-in-from-left duration-700">
+          {/* Subtle backdrop with premium blur */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e]/60 via-[#16213e]/50 to-[#0f3460]/40 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+
+          {/* Left Panel - Conversation */}
+          <div className="w-[340px] flex-shrink-0 bg-white/[0.97] backdrop-blur-2xl flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.15)] relative z-10 animate-in slide-in-from-left duration-500" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}>
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#4A5D7F] to-[#5A6D8F] p-6 text-white border-b border-white/10">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-serif text-xl font-semibold">ASPIRE Practice</h3>
-                <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/20 rounded-full transition-colors" aria-label="Close">
-                  <X className="w-5 h-5" />
+            <div className="px-6 py-5 border-b border-gray-100/80">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#4A5D7F] to-[#3A4D6F] flex items-center justify-center shadow-sm">
+                    <Sparkles className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-[#2C2C2C] tracking-tight">ASPIRE Rewards</h3>
+                    <p className="text-[10px] text-emerald-600 font-medium flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Online
+                    </p>
+                  </div>
+                </div>
+                <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200" aria-label="Close">
+                  <X className="w-4 h-4 text-gray-400" strokeWidth={2} />
                 </button>
               </div>
-              <p className="text-xs text-white/70">Online • Ready to help</p>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="flex-1 overflow-y-auto px-5 py-5 space-y-3">
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[85%] px-4 py-3 rounded-2xl shadow-sm ${msg.type === "user" ? "bg-[#4A5D7F] text-white rounded-br-sm" : "bg-white text-gray-800 rounded-bl-sm border border-[#4A5D7F]/10"}`}>
-                    <p className="text-sm leading-relaxed">{msg.content}</p>
+                  <div className={`max-w-[85%] px-4 py-2.5 ${msg.type === "user" ? "bg-[#4A5D7F] text-white rounded-2xl rounded-br-md shadow-sm" : "bg-gray-50 text-[#2C2C2C] rounded-2xl rounded-bl-md border border-gray-100"}`}>
+                    <p className="text-[13px] leading-relaxed font-light">{msg.content}</p>
                   </div>
                 </div>
               ))}
 
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-white px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm border border-[#4A5D7F]/10">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="bg-gray-50 px-4 py-3 rounded-2xl rounded-bl-md border border-gray-100">
+                    <div className="flex gap-1.5">
+                      <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                     </div>
                   </div>
                 </div>
               )}
 
               {messages.length <= 1 && !isTyping && (
-                <div className="space-y-2 mt-4">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2">Quick Topics</p>
+                <div className="space-y-2 mt-3">
+                  <p className="text-[10px] font-medium text-gray-400 uppercase tracking-widest px-1 mb-3">Explore Topics</p>
                   {quickActions.map((action) => (
                     <button
                       key={action.id}
                       onClick={() => handleQuickAction(action)}
-                      className="w-full text-left bg-white hover:bg-[#4A5D7F] hover:text-white border border-[#4A5D7F]/20 hover:border-[#4A5D7F] rounded-xl p-3 transition-all duration-300 group"
+                      className="w-full text-left bg-gray-50/80 hover:bg-[#4A5D7F] border border-gray-100 hover:border-[#4A5D7F] rounded-xl px-4 py-3 transition-all duration-300 group"
                     >
-                      <p className="text-sm font-semibold text-[#4A5D7F] group-hover:text-white mb-0.5">{action.label}</p>
-                      <p className="text-xs text-gray-500 group-hover:text-white/70">{action.subtitle}</p>
+                      <p className="text-[13px] font-medium text-[#2C2C2C] group-hover:text-white">{action.label}</p>
+                      <p className="text-[11px] text-gray-400 group-hover:text-white/60 mt-0.5">{action.subtitle}</p>
                     </button>
                   ))}
                 </div>
@@ -680,8 +697,8 @@ export default function ExploreHCP() {
 
             {/* Topic Navigation */}
             {currentPanel && (
-              <div className="px-4 py-3 border-t border-[#4A5D7F]/20 bg-gradient-to-b from-[#F5F1EC]/50 to-[#F5F1EC]/80 backdrop-blur-sm">
-                <div className="grid grid-cols-3 gap-2">
+              <div className="px-4 py-3 border-t border-gray-100">
+                <div className="grid grid-cols-3 gap-1.5">
                   {quickActions.map((action) => (
                     <button
                       key={action.id}
@@ -693,12 +710,9 @@ export default function ExploreHCP() {
                         }
                       }}
                       disabled={isTransitioning}
-                      className={`px-2 py-2.5 rounded-xl text-xs font-semibold transition-all duration-500 ${currentPanel === action.id ? "bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] text-white shadow-xl scale-105" : "bg-white/70 text-[#4A5D7F] hover:bg-white hover:scale-105"} ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}
+                      className={`px-2 py-2 rounded-lg text-[10px] font-semibold tracking-wide transition-all duration-300 ${currentPanel === action.id ? "bg-[#4A5D7F] text-white shadow-sm" : "bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-[#4A5D7F]"} ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}
                     >
-                      <span className="text-center flex items-center justify-center gap-1">
-                        {currentPanel === action.id && <span className="animate-pulse">✓</span>}
-                        {action.label}
-                      </span>
+                      {action.label}
                     </button>
                   ))}
                 </div>
@@ -706,36 +720,35 @@ export default function ExploreHCP() {
             )}
 
             {/* Input */}
-            <div className="p-4 border-t border-[#4A5D7F]/20 bg-white/50">
+            <div className="px-4 py-4 border-t border-gray-100 bg-white">
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder="Ask about ASPIRE Practice..."
-                  className="flex-1 px-4 py-3 border border-[#4A5D7F]/20 rounded-xl focus:outline-none focus:border-[#4A5D7F] transition-colors text-sm bg-white"
+                  placeholder="Ask about ASPIRE..."
+                  className="flex-1 px-4 py-2.5 border border-gray-200 rounded-full focus:outline-none focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 transition-all text-[13px] bg-gray-50/50"
                   disabled={isTyping}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isTyping}
-                  className="bg-[#4A5D7F] text-white p-3 rounded-xl hover:bg-[#3A4D6F] transition-colors disabled:opacity-50 shadow-sm"
+                  className="w-10 h-10 flex items-center justify-center bg-[#4A5D7F] text-white rounded-full hover:bg-[#3A4D6F] transition-colors disabled:opacity-40 shadow-sm"
                   aria-label="Send"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-4 h-4" />
                 </button>
               </div>
             </div>
           </div>
 
           {/* Right Panel - Dynamic Content */}
-          <div className="flex-1 relative bg-[#F5F1EC]">
+          <div className="flex-1 relative z-10">
             {isTransitioning && (
-              <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#F5F1EC] animate-in fade-in duration-200">
-                <div className="w-20 h-20 relative animate-spin" style={{ animationDuration: '1.5s' }}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] rounded-3xl animate-pulse" />
-                  <div className="absolute inset-2 bg-[#F5F1EC] rounded-2xl" />
+              <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#FAFAF8]">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-8 h-8 border-2 border-[#4A5D7F]/20 border-t-[#4A5D7F] rounded-full animate-spin" />
                 </div>
               </div>
             )}
@@ -743,11 +756,24 @@ export default function ExploreHCP() {
             {currentPanel && (
               <div
                 ref={contentRef}
-                className="h-full overflow-y-auto p-10 animate-in fade-in slide-in-from-right-4 zoom-in-95 duration-500"
-                style={{ animationTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
+                className="h-full overflow-y-auto bg-[#FAFAF8] p-10 animate-in fade-in duration-400"
+                style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
                 key={currentPanel}
               >
-                {getPanelContent(currentPanel)}
+                <div className="max-w-3xl mx-auto">
+                  {getPanelContent(currentPanel)}
+                </div>
+              </div>
+            )}
+
+            {!currentPanel && (
+              <div className="h-full flex items-center justify-center bg-[#FAFAF8]">
+                <div className="text-center max-w-sm">
+                  <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-[#4A5D7F]/10 to-[#4A5D7F]/5 flex items-center justify-center">
+                    <Sparkles className="w-7 h-7 text-[#4A5D7F]/40" />
+                  </div>
+                  <p className="text-sm text-gray-400 font-light">Select a topic to explore ASPIRE benefits</p>
+                </div>
               </div>
             )}
           </div>
