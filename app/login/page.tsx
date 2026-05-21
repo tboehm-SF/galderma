@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Eye, EyeOff, Lock } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Lock, Sparkles } from "lucide-react";
+import { saveMember } from "@/lib/store";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -15,144 +16,109 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
-    // Simulate login — redirect to portal after brief delay
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Unable to authenticate. Please check your email.");
+        setIsLoading(false);
+        return;
+      }
+
+      saveMember(data);
       router.push("/portal");
-    }, 1200);
+    } catch {
+      setError("Connection error. Please try again.");
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#F5F1EC] grain-texture flex flex-col">
-      {/* Top cream banner with brand pattern */}
       <div className="h-48 relative overflow-hidden flex-shrink-0">
-        <Image
-          src="/images/bg-pattern.jpg"
-          alt=""
-          fill
-          className="object-cover"
-        />
+        <Image src="/images/bg-pattern.jpg" alt="" fill className="object-cover" />
         <div className="absolute inset-0 bg-[#F5F1EC]/30" />
       </div>
 
       <div className="max-w-md mx-auto px-6 -mt-24 relative pb-20 w-full">
-        {/* Back link */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-[#4A5D7F] text-sm font-medium mb-8 hover:gap-3 transition-all duration-300"
-        >
+        <Link href="/" className="inline-flex items-center gap-2 text-[#4A5D7F] text-sm font-medium mb-8 hover:gap-3 transition-all duration-300">
           <ArrowLeft className="w-4 h-4" />
           Back to Home
         </Link>
 
-        {/* Login Card */}
         <div className="bg-white rounded-3xl shadow-luxury-xl p-10 lg:p-12">
-          {/* Header */}
           <div className="text-center mb-10">
-            <span className="text-lg font-light tracking-[0.3em] text-[#4A5D7F]/40 block mb-6">
-              ASPIRE
-            </span>
-
-            {/* Lock icon */}
+            <span className="text-lg font-light tracking-[0.3em] text-[#4A5D7F]/40 block mb-6">ASPIRE</span>
             <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-[#F5F1EC] to-white rounded-2xl flex items-center justify-center shadow-sm border border-[#4A5D7F]/10">
               <Lock className="w-7 h-7 text-[#4A5D7F]" strokeWidth={1.5} />
             </div>
-
             <h1 className="font-serif text-3xl text-[#4A5D7F] mb-2 font-light">
               Welcome <span className="font-normal">Back</span>
             </h1>
-            <p className="text-[#2C2C2C]/50 text-sm font-light">
-              Sign in to your ASPIRE Practice Rewards account
-            </p>
+            <p className="text-[#2C2C2C]/50 text-sm font-light">Sign in to your ASPIRE Practice Rewards account</p>
           </div>
 
-          {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
               <p className="text-sm text-amber-800 font-light">{error}</p>
             </div>
           )}
 
+          <div className="mb-6 p-4 bg-[#F5F1EC]/60 border border-[#4A5D7F]/10 rounded-xl">
+            <div className="flex items-center gap-2 mb-1">
+              <Sparkles className="w-3.5 h-3.5 text-[#4A5D7F]" />
+              <p className="text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider">Demo Login</p>
+            </div>
+            <p className="text-xs text-[#2C2C2C]/50">
+              Use{" "}
+              <button type="button" onClick={() => { setEmail("aaronmorita@gmail.com"); setPassword("demo1234"); }} className="text-[#4A5D7F] font-medium underline underline-offset-2 cursor-pointer">
+                Dr. Aaron Morita&apos;s account
+              </button>{" "}
+              to explore
+            </p>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Email */}
             <div>
-              <label htmlFor="login-email" className="block text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="login-email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 focus:outline-none transition-all duration-300 text-[15px] bg-[#FAFAFA] hover:bg-white placeholder:text-gray-400"
-                required
-              />
+              <label htmlFor="login-email" className="block text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider mb-2">Email Address</label>
+              <input type="email" id="login-email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 focus:outline-none transition-all duration-300 text-[15px] bg-[#FAFAFA] hover:bg-white placeholder:text-gray-400" required />
             </div>
 
-            {/* Password */}
             <div>
-              <label htmlFor="login-password" className="block text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider mb-2">
-                Password
-              </label>
+              <label htmlFor="login-password" className="block text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider mb-2">Password</label>
               <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="login-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  className="w-full px-4 py-3.5 pr-12 border border-gray-200 rounded-xl focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 focus:outline-none transition-all duration-300 text-[15px] bg-[#FAFAFA] hover:bg-white placeholder:text-gray-400"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#4A5D7F] transition-colors duration-300 rounded-lg hover:bg-[#F5F1EC]/50"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-4 h-4" strokeWidth={1.5} />
-                  ) : (
-                    <Eye className="w-4 h-4" strokeWidth={1.5} />
-                  )}
+                <input type={showPassword ? "text" : "password"} id="login-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" className="w-full px-4 py-3.5 pr-12 border border-gray-200 rounded-xl focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 focus:outline-none transition-all duration-300 text-[15px] bg-[#FAFAFA] hover:bg-white placeholder:text-gray-400" required />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#4A5D7F] transition-colors duration-300 rounded-lg hover:bg-[#F5F1EC]/50" aria-label={showPassword ? "Hide password" : "Show password"}>
+                  {showPassword ? <EyeOff className="w-4 h-4" strokeWidth={1.5} /> : <Eye className="w-4 h-4" strokeWidth={1.5} />}
                 </button>
               </div>
             </div>
 
-            {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2.5 cursor-pointer group">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300 text-[#4A5D7F] focus:ring-[#4A5D7F]"
-                />
-                <span className="text-sm text-[#2C2C2C]/60 font-light group-hover:text-[#2C2C2C] transition-colors">
-                  Remember me
-                </span>
+                <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-[#4A5D7F] focus:ring-[#4A5D7F]" />
+                <span className="text-sm text-[#2C2C2C]/60 font-light group-hover:text-[#2C2C2C] transition-colors">Remember me</span>
               </label>
-              <a href="#" className="text-sm text-[#4A5D7F] font-medium hover:underline underline-offset-4">
-                Forgot password?
-              </a>
+              <a href="#" className="text-sm text-[#4A5D7F] font-medium hover:underline underline-offset-4">Forgot password?</a>
             </div>
 
-            {/* Submit Button */}
             <div className="pt-2">
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full btn-primary text-white py-4 rounded-full text-sm font-semibold tracking-wider uppercase flex items-center justify-center gap-2 disabled:opacity-70"
-              >
+              <button type="submit" disabled={isLoading} className="w-full btn-primary text-white py-4 rounded-full text-sm font-semibold tracking-wider uppercase flex items-center justify-center gap-2 disabled:opacity-70">
                 {isLoading ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Signing In...
+                    Authenticating...
                   </>
                 ) : (
                   "SIGN IN"
@@ -161,21 +127,16 @@ export default function LoginPage() {
             </div>
           </form>
 
-          {/* Register link */}
           <div className="mt-8 pt-6 border-t border-gray-100 text-center">
             <p className="text-sm text-[#2C2C2C]/50 font-light">
               Don&apos;t have an account?{" "}
-              <Link href="/register" className="text-[#4A5D7F] font-medium hover:underline underline-offset-4">
-                Enroll Today
-              </Link>
+              <Link href="/register" className="text-[#4A5D7F] font-medium hover:underline underline-offset-4">Enroll Today</Link>
             </p>
           </div>
         </div>
 
-        {/* Help text */}
         <p className="text-center text-xs text-[#2C2C2C]/40 mt-6 font-light">
-          Need help? Contact{" "}
-          <a href="#" className="text-[#4A5D7F] hover:underline underline-offset-2">ASPIRE Support</a>
+          Need help? Contact <a href="#" className="text-[#4A5D7F] hover:underline underline-offset-2">ASPIRE Support</a>
         </p>
       </div>
     </div>
