@@ -16,8 +16,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "ASPIRE Galderma Rewards – Earn, redeem, save & repeat",
-  description: "ASPIRE Galderma Rewards is designed to support and reward you at every stage of your aesthetic journey.",
+  title: "ASPIRE Galderma Rewards",
+  description: "ASPIRE Galderma Rewards – Build your business and reward your patients with the premier aesthetics loyalty program.",
 };
 
 export default function RootLayout({

@@ -2,10 +2,14 @@
 
 import { Menu, User, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isPatientPage = pathname === "/patients";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,14 +19,24 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
-    { label: "How It Works", href: "#" },
-    { label: "Program Benefits", href: "#" },
-    { label: "Eligible Treatments", href: "#" },
-    { label: "Find a Provider", href: "#" },
-    { label: "FAQs", href: "#" },
-    { label: "Contact Us", href: "#" },
-  ];
+  const menuItems = isPatientPage
+    ? [
+        { label: "How It Works", href: "#" },
+        { label: "Program Benefits", href: "#" },
+        { label: "Eligible Treatments", href: "#" },
+        { label: "Find a Provider", href: "#" },
+        { label: "For Providers", href: "/" },
+        { label: "FAQs", href: "#" },
+        { label: "Contact Us", href: "#" },
+      ]
+    : [
+        { label: "Practice Tools", href: "#" },
+        { label: "Savings & Rebates", href: "#" },
+        { label: "How It Works", href: "#" },
+        { label: "For Patients", href: "/patients" },
+        { label: "Prescribing Information", href: "#" },
+        { label: "Contact Us", href: "#" },
+      ];
 
   return (
     <header
@@ -51,13 +65,39 @@ export default function Header() {
 
         {/* ASPIRE Logo */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <span className="text-2xl font-light tracking-[0.35em] text-[#4A5D7F] transition-all duration-300 hover:tracking-[0.4em]">
-            ASPIRE
-          </span>
+          <Link href="/" className="block">
+            <span className="text-2xl font-light tracking-[0.35em] text-[#4A5D7F] transition-all duration-300 hover:tracking-[0.4em]">
+              ASPIRE
+            </span>
+          </Link>
         </div>
 
         {/* Account & CTA */}
         <div className="flex items-center gap-3">
+          {/* Page Toggle */}
+          <div className="hidden md:flex items-center bg-[#F5F1EC]/60 rounded-full p-1 border border-[#4A5D7F]/10">
+            <Link
+              href="/"
+              className={`px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 ${
+                !isPatientPage
+                  ? "bg-[#4A5D7F] text-white shadow-sm"
+                  : "text-[#4A5D7F]/70 hover:text-[#4A5D7F]"
+              }`}
+            >
+              Providers
+            </Link>
+            <Link
+              href="/patients"
+              className={`px-4 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-all duration-300 ${
+                isPatientPage
+                  ? "bg-[#4A5D7F] text-white shadow-sm"
+                  : "text-[#4A5D7F]/70 hover:text-[#4A5D7F]"
+              }`}
+            >
+              Patients
+            </Link>
+          </div>
+
           <button
             className={`hidden sm:inline-flex px-5 py-2 text-xs font-semibold tracking-wider uppercase rounded-full transition-all duration-400 ${
               scrolled
@@ -65,7 +105,7 @@ export default function Header() {
                 : "border border-[#4A5D7F]/30 text-[#4A5D7F] hover:bg-[#4A5D7F] hover:text-white hover:border-[#4A5D7F]"
             }`}
           >
-            Join Now
+            {isPatientPage ? "Join Now" : "Enroll"}
           </button>
           <button
             className="p-2.5 hover:bg-[#4A5D7F]/5 rounded-xl transition-all duration-300 group"
@@ -101,18 +141,56 @@ export default function Header() {
               </button>
             </div>
 
+            {/* Page Toggle (Mobile) */}
+            <div className="px-6 py-4 border-b border-gray-100">
+              <div className="flex items-center bg-[#F5F1EC]/60 rounded-full p-1">
+                <Link
+                  href="/"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex-1 text-center px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                    !isPatientPage
+                      ? "bg-[#4A5D7F] text-white shadow-sm"
+                      : "text-[#4A5D7F]/70"
+                  }`}
+                >
+                  Providers
+                </Link>
+                <Link
+                  href="/patients"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex-1 text-center px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                    isPatientPage
+                      ? "bg-[#4A5D7F] text-white shadow-sm"
+                      : "text-[#4A5D7F]/70"
+                  }`}
+                >
+                  Patients
+                </Link>
+              </div>
+            </div>
+
             {/* Menu Items */}
-            <nav className="py-8">
+            <nav className="py-6">
               <ul className="space-y-1">
                 {menuItems.map((item, index) => (
                   <li key={index}>
-                    <a
-                      href={item.href}
-                      className="block px-8 py-3.5 text-[15px] text-[#2C2C2C] hover:bg-[#F5F1EC] hover:text-[#4A5D7F] hover:pl-10 transition-all duration-300 font-light"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </a>
+                    {item.href.startsWith("/") ? (
+                      <Link
+                        href={item.href}
+                        className="block px-8 py-3.5 text-[15px] text-[#4A5D7F] font-medium hover:bg-[#F5F1EC] hover:pl-10 transition-all duration-300"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="block px-8 py-3.5 text-[15px] text-[#2C2C2C] hover:bg-[#F5F1EC] hover:text-[#4A5D7F] hover:pl-10 transition-all duration-300 font-light"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -120,7 +198,7 @@ export default function Header() {
               {/* CTA Buttons in Menu */}
               <div className="mt-10 px-8 space-y-3">
                 <button className="w-full btn-primary text-white px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider">
-                  Join Now
+                  {isPatientPage ? "Join Now" : "Enroll Today"}
                 </button>
                 <button className="w-full btn-secondary text-[#4A5D7F] px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider relative z-10">
                   <span className="relative z-10">Sign In</span>

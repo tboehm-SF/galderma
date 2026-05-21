@@ -1,11 +1,15 @@
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Perks from "@/components/Perks";
-import HowItWorks from "@/components/HowItWorks";
-import HCPBenefits from "@/components/HCPBenefits";
-import TreatmentFinder from "@/components/TreatmentFinder";
+import HCPHero from "@/components/HCPHero";
+import PracticeTools from "@/components/PracticeTools";
+import HowItAddsUp from "@/components/HowItAddsUp";
+import MembershipCTA from "@/components/MembershipCTA";
 import Footer from "@/components/Footer";
-import ExploreRewards from "@/components/ExploreRewards";
+import ExploreHCP from "@/components/ExploreHCP";
+
+export const metadata = {
+  title: "ASPIRE Galderma Practice Rewards – Build Your Business",
+  description: "ASPIRE Galderma Practice Rewards is a loyalty program unlike any other. Get valuable, business-building tools designed to position your practice for long-term success.",
+};
 
 export default function Home() {
   return (
@@ -13,15 +17,14 @@ export default function Home() {
       <div className="flex flex-col min-h-screen" id="website-content">
         <Header />
         <main className="flex-1">
-          <Hero />
-          <Perks />
-          <HowItWorks />
-          <HCPBenefits />
-          <TreatmentFinder />
+          <HCPHero />
+          <PracticeTools />
+          <HowItAddsUp />
+          <MembershipCTA />
         </main>
         <Footer />
       </div>
-      <ExploreRewards />
+      <ExploreHCP />
     </>
   );
 }
