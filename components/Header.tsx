@@ -98,7 +98,8 @@ export default function Header() {
             </Link>
           </div>
 
-          <button
+          <Link
+            href={isPatientPage ? "/register" : "/register"}
             className={`hidden sm:inline-flex px-5 py-2 text-xs font-semibold tracking-wider uppercase rounded-full transition-all duration-400 ${
               scrolled
                 ? "btn-primary text-white"
@@ -106,7 +107,7 @@ export default function Header() {
             }`}
           >
             {isPatientPage ? "Join Now" : "Enroll"}
-          </button>
+          </Link>
           <button
             className="p-2.5 hover:bg-[#4A5D7F]/5 rounded-xl transition-all duration-300 group"
             aria-label="Account"
@@ -197,12 +198,20 @@ export default function Header() {
 
               {/* CTA Buttons in Menu */}
               <div className="mt-10 px-8 space-y-3">
-                <button className="w-full btn-primary text-white px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider">
+                <Link
+                  href="/register"
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-center btn-primary text-white px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider"
+                >
                   {isPatientPage ? "Join Now" : "Enroll Today"}
-                </button>
-                <button className="w-full btn-secondary text-[#4A5D7F] px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider relative z-10">
-                  <span className="relative z-10">Sign In</span>
-                </button>
+                </Link>
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-center border-2 border-[#4A5D7F] text-[#4A5D7F] px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider hover:bg-[#4A5D7F] hover:text-white transition-colors duration-300"
+                >
+                  Sign In
+                </Link>
               </div>
             </nav>
           </div>
