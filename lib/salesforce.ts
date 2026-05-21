@@ -13,6 +13,7 @@ async function getConnection(): Promise<Connection> {
     const c = new jsforce.Connection({
       instanceUrl: process.env.SF_INSTANCE_URL,
       accessToken: process.env.SF_ACCESS_TOKEN,
+      version: "62.0",
     });
     conn = c;
     tokenExpiry = now + 110 * 60 * 1000;
@@ -82,7 +83,7 @@ export async function getMemberTier(memberId: string) {
   const c = await getConnection();
   const result = await c.query(`
     SELECT Id, LoyaltyTierId, LoyaltyTier.Name, LoyaltyTier.SequenceNumber,
-           EffectiveDate, ChangeReasonType, ReasonForChange
+           EffectiveDate
     FROM LoyaltyMemberTier
     WHERE LoyaltyMemberId = '${memberId}'
     ORDER BY EffectiveDate DESC, CreatedDate DESC
@@ -147,7 +148,7 @@ export async function getPatients(accountId: string, excludeContactId: string) {
 export async function getProgramTiers(programId: string) {
   const c = await getConnection();
   const result = await c.query(`
-    SELECT Id, Name, SequenceNumber, MinimumEligibleBalance
+    SELECT Id, Name, SequenceNumber
     FROM LoyaltyTier
     WHERE LoyaltyTierGroup.LoyaltyProgramId = '${programId}'
     ORDER BY SequenceNumber

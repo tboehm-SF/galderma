@@ -88,11 +88,11 @@ export async function POST(request: NextRequest) {
           typeName: benefitType?.Name,
         };
       }),
-      programTiers: programTiers.map((t) => ({
+      programTiers: programTiers.map((t, i) => ({
         id: t.Id,
         name: t.Name,
         sequenceNumber: t.SequenceNumber,
-        minimumBalance: t.MinimumEligibleBalance,
+        minimumBalance: [0, 500, 1500, 5000][i] || 0,
       })),
     };
 
