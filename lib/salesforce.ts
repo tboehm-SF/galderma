@@ -8,17 +8,55 @@ async function getConnection(): Promise<Connection> {
   const now = Date.now();
   if (conn && now < tokenExpiry) return conn;
 
-  const loginUrl = process.env.SF_LOGIN_URL || "https://login.salesforce.com";
-  const c = new jsforce.Connection({ loginUrl });
+  // Option 1: Direct access token + instance URL (fastest for demo)
+  if (process.env.SF_ACCESS_TOKEN && process.env.SF_INSTANCE_URL) {
+    const c = new jsforce.Connection({
+      instanceUrl: process.env.SF_INSTANCE_URL,
+      accessToken: process.env.SF_ACCESS_TOKEN,
+    });
+    conn = c;
+    tokenExpiry = now + 110 * 60 * 1000;
+    return c;
+  }
 
-  await c.login(
-    process.env.SF_USERNAME!,
-    process.env.SF_PASSWORD! + (process.env.SF_SECURITY_TOKEN || "")
+  // Option 2: OAuth Client Credentials flow (Connected App)
+  if (process.env.SF_CLIENT_ID && process.env.SF_CLIENT_SECRET && process.env.SF_INSTANCE_URL) {
+    const tokenUrl = `${process.env.SF_INSTANCE_URL}/services/oauth2/token`;
+    const params = new URLSearchParams({
+      grant_type: "client_credentials",
+      client_id: process.env.SF_CLIENT_ID,
+      client_secret: process.env.SF_CLIENT_SECRET,
+    });
+    const res = await fetch(tokenUrl, { method: "POST", body: params });
+    if (!res.ok) throw new Error(`OAuth failed: ${await res.text()}`);
+    const data = await res.json();
+    const c = new jsforce.Connection({
+      instanceUrl: data.instance_url,
+      accessToken: data.access_token,
+    });
+    conn = c;
+    tokenExpiry = now + 110 * 60 * 1000;
+    return c;
+  }
+
+  // Option 3: Username-password login
+  if (process.env.SF_USERNAME && process.env.SF_PASSWORD) {
+    const loginUrl = process.env.SF_LOGIN_URL || "https://login.salesforce.com";
+    const c = new jsforce.Connection({ loginUrl });
+    await c.login(
+      process.env.SF_USERNAME,
+      process.env.SF_PASSWORD + (process.env.SF_SECURITY_TOKEN || "")
+    );
+    conn = c;
+    tokenExpiry = now + 55 * 60 * 1000;
+    return c;
+  }
+
+  throw new Error(
+    "Missing Salesforce credentials. Set SF_ACCESS_TOKEN + SF_INSTANCE_URL, " +
+    "or SF_CLIENT_ID + SF_CLIENT_SECRET + SF_INSTANCE_URL, " +
+    "or SF_USERNAME + SF_PASSWORD + SF_LOGIN_URL."
   );
-
-  conn = c;
-  tokenExpiry = now + 55 * 60 * 1000; // refresh after 55 min
-  return c;
 }
 
 // ─── Member lookup by email ───

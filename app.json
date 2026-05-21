@@ -17,6 +17,38 @@
     "NEXT_TELEMETRY_DISABLED": {
       "description": "Disable Next.js telemetry",
       "value": "1"
+    },
+    "SF_INSTANCE_URL": {
+      "description": "Salesforce instance URL (e.g. https://your-org.my.salesforce.com)",
+      "required": true
+    },
+    "SF_ACCESS_TOKEN": {
+      "description": "Salesforce access token (or use SF_CLIENT_ID + SF_CLIENT_SECRET, or SF_USERNAME + SF_PASSWORD)",
+      "required": false
+    },
+    "SF_CLIENT_ID": {
+      "description": "Connected App consumer key (for OAuth client credentials flow)",
+      "required": false
+    },
+    "SF_CLIENT_SECRET": {
+      "description": "Connected App consumer secret",
+      "required": false
+    },
+    "SF_USERNAME": {
+      "description": "Salesforce username (for username-password auth)",
+      "required": false
+    },
+    "SF_PASSWORD": {
+      "description": "Salesforce password + security token",
+      "required": false
+    },
+    "SF_SECURITY_TOKEN": {
+      "description": "Salesforce security token (appended to password)",
+      "required": false
+    },
+    "SF_LOGIN_URL": {
+      "description": "Salesforce login URL (default: https://login.salesforce.com)",
+      "required": false
     }
   },
   "formation": {
