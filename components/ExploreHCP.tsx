@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { X, Send, Sparkles } from "lucide-react";
+import { X, Send, Sparkles, BarChart3, MessageCircle, BadgeDollarSign, BookOpen, Tag, Wallet, Gift, TrendingUp, Building2, LineChart, Users, Target, Gem, RefreshCw } from "lucide-react";
 
 type PanelId = "tools" | "savings" | "growth";
 
@@ -199,46 +199,30 @@ export default function ExploreHCP() {
   const getPanelContent = (panelId: PanelId) => {
     const panels: Record<PanelId, React.ReactElement> = {
       tools: (
-        <div className="space-y-8">
+        <div className="space-y-6">
           {/* Hero Header */}
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#3A4D6F] text-white p-12 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-90 duration-800" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", animationDelay: "200ms" }}>
-            {/* Animated background particles */}
-            <div className="absolute top-0 right-0 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-top-full" style={{ animationDelay: "400ms" }} />
-            <div className="absolute bottom-0 left-0 w-56 h-56 bg-purple-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-bottom-full" style={{ animationDelay: "600ms" }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl animate-in fade-in zoom-in-50 duration-1500" style={{ animationDelay: "800ms" }} />
-
-            {/* Grid pattern overlay */}
-            <div className="absolute inset-0 opacity-[0.04]" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`
-            }} />
+          <div className="relative bg-[#4A5D7F] text-white p-10 rounded-2xl overflow-hidden animate-in fade-in duration-500" style={{ animationDelay: "200ms" }}>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.04] rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/[0.03] rounded-full blur-2xl translate-y-1/3 -translate-x-1/4" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] mb-6 border border-white/10 animate-in fade-in slide-in-from-left-8 duration-500" style={{ animationDelay: "600ms" }}>
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                ASPIRE Practice Intelligence
-              </div>
-              <h3 className="font-serif text-5xl font-light mb-4 tracking-tight animate-in fade-in slide-in-from-left-12 zoom-in-95 duration-700" style={{ animationDelay: "750ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}>
-                Unlock Powerful{" "}
-                <span className="font-semibold animate-in fade-in zoom-in-50 duration-500" style={{ animationDelay: "950ms" }}>
-                  Practice Tools
-                </span>
+              <p className="text-[10px] font-medium text-white/50 uppercase tracking-widest mb-4">Practice Intelligence</p>
+              <h3 className="text-3xl font-light mb-3 tracking-tight">
+                Unlock Powerful <span className="font-semibold">Practice Tools</span>
               </h3>
-              <p className="text-white/70 text-base leading-relaxed max-w-2xl animate-in fade-in slide-in-from-left-8 duration-600" style={{ animationDelay: "1100ms" }}>
-                Powerful, business-building tools designed to position your practice for long-term success and patient satisfaction.
+              <p className="text-white/60 text-sm leading-relaxed max-w-lg font-light">
+                Business-building tools designed to position your practice for long-term success and patient satisfaction.
               </p>
             </div>
           </div>
 
           {/* Four Practice Tools — Full Cards */}
-          <div className="space-y-5">
+          <div className="space-y-4">
             {[
               {
-                icon: "📊",
-                emoji: "📈",
+                Icon: BarChart3,
                 title: "Leverage Patient Insights",
                 description: "Access customized data to help identify new patient opportunities and drive business.",
-                gradient: "from-blue-50 to-cyan-50",
-                hoverGradient: "group-hover:from-blue-100 group-hover:to-cyan-100",
                 metrics: [
                   { label: "Data Points", value: "50+" },
                   { label: "Insights/Mo", value: "12" },
@@ -246,12 +230,9 @@ export default function ExploreHCP() {
                 detail: "Track appointment trends, treatment preferences, and engagement patterns to make informed decisions about your practice growth strategy."
               },
               {
-                icon: "💬",
-                emoji: "📧",
+                Icon: MessageCircle,
                 title: "Cultivate Patient Relationships",
                 description: "Send strategic, branded communications to help encourage engagement and support retention.",
-                gradient: "from-purple-50 to-pink-50",
-                hoverGradient: "group-hover:from-purple-100 group-hover:to-pink-100",
                 metrics: [
                   { label: "Templates", value: "20+" },
                   { label: "Avg Open Rate", value: "42%" },
@@ -259,12 +240,9 @@ export default function ExploreHCP() {
                 detail: "Automated, personalized outreach that keeps your practice top-of-mind while respecting patient preferences and privacy."
               },
               {
-                icon: "💰",
-                emoji: "🏷️",
+                Icon: BadgeDollarSign,
                 title: "Earn Savings",
                 description: "Get valuable rebates for your practice and exclusive savings to extend to your patients.",
-                gradient: "from-amber-50 to-orange-50",
-                hoverGradient: "group-hover:from-amber-100 group-hover:to-orange-100",
                 metrics: [
                   { label: "Avg Savings", value: "$500+/yr" },
                   { label: "Patient Value", value: "$45+" },
@@ -272,334 +250,305 @@ export default function ExploreHCP() {
                 detail: "Automatic rebates credited to your account, plus patient-facing savings that incentivize treatment loyalty and repeat visits."
               },
               {
-                icon: "📚",
-                emoji: "🎓",
+                Icon: BookOpen,
                 title: "Utilize Treatment Resources",
                 description: "Take advantage of educational assets to help support your patients in their aesthetic journey.",
-                gradient: "from-emerald-50 to-teal-50",
-                hoverGradient: "group-hover:from-emerald-100 group-hover:to-teal-100",
                 metrics: [
                   { label: "Resources", value: "100+" },
                   { label: "Categories", value: "8" },
                 ],
                 detail: "Clinically-backed educational materials covering the full Galderma portfolio — from consultation guides to post-treatment care."
               },
-            ].map((tool, i) => (
-              <div
-                key={tool.title}
-                className={`group relative bg-white/90 backdrop-blur-xl border-2 border-[#4A5D7F]/8 hover:border-[#4A5D7F]/25 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 cursor-default animate-in fade-in slide-in-from-bottom-8 zoom-in-95`}
-                style={{ animationDelay: `${1200 + i * 200}ms`, animationDuration: "700ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
-              >
-                {/* Hover gradient background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} ${tool.hoverGradient} opacity-0 group-hover:opacity-100 transition-all duration-700`} />
+            ].map((tool, i) => {
+              const ToolIcon = tool.Icon;
+              return (
+                <div
+                  key={tool.title}
+                  className="group relative bg-white border border-gray-100 hover:border-[#4A5D7F]/20 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-lg cursor-default animate-in fade-in slide-in-from-bottom-6"
+                  style={{ animationDelay: `${1200 + i * 150}ms`, animationDuration: "600ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
+                >
+                  <div className="relative p-6">
+                    <div className="flex items-start gap-5">
+                      {/* Icon */}
+                      <div className="w-12 h-12 rounded-xl bg-[#4A5D7F]/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-[#4A5D7F]/10 transition-colors duration-300">
+                        <ToolIcon className="w-5 h-5 text-[#4A5D7F]" strokeWidth={1.5} />
+                      </div>
 
-                {/* Card content */}
-                <div className="relative p-7">
-                  <div className="flex items-start gap-5">
-                    {/* Icon */}
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#F5F1EC] to-white flex items-center justify-center flex-shrink-0 shadow-lg border border-[#4A5D7F]/8 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 animate-in zoom-in-50 duration-600" style={{ animationDelay: `${1300 + i * 200}ms` }}>
-                      <span className="text-3xl">{tool.icon}</span>
-                    </div>
+                      {/* Text Content */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-semibold text-[#2C2C2C] mb-1.5 tracking-tight">
+                          {tool.title}
+                        </h4>
+                        <p className="text-[13px] text-gray-500 leading-relaxed font-light mb-3">
+                          {tool.description}
+                        </p>
+                        <p className="text-[11px] text-gray-400 leading-relaxed mb-3">
+                          {tool.detail}
+                        </p>
 
-                    {/* Text Content */}
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-serif text-[22px] font-semibold text-[#4A5D7F] mb-2 tracking-tight animate-in fade-in slide-in-from-right-4 duration-500" style={{ animationDelay: `${1350 + i * 200}ms` }}>
-                        {tool.title}
-                      </h4>
-                      <p className="text-[15px] text-[#2C2C2C]/80 leading-relaxed font-light mb-4 animate-in fade-in slide-in-from-right-4 duration-500" style={{ animationDelay: `${1450 + i * 200}ms` }}>
-                        {tool.description}
-                      </p>
-
-                      {/* Extended detail on hover / always visible */}
-                      <p className="text-xs text-gray-500 leading-relaxed mb-4 animate-in fade-in duration-500" style={{ animationDelay: `${1550 + i * 200}ms` }}>
-                        {tool.detail}
-                      </p>
-
-                      {/* Metrics Row */}
-                      <div className="flex gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: `${1650 + i * 200}ms` }}>
-                        {tool.metrics.map((metric) => (
-                          <div key={metric.label} className="inline-flex items-center gap-2 px-4 py-2 bg-[#4A5D7F]/5 group-hover:bg-white/80 rounded-xl transition-colors duration-300">
-                            <span className="font-serif text-lg font-semibold text-[#4A5D7F]">{metric.value}</span>
-                            <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">{metric.label}</span>
-                          </div>
-                        ))}
+                        {/* Metrics Row */}
+                        <div className="flex gap-2">
+                          {tool.metrics.map((metric) => (
+                            <div key={metric.label} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#F5F1EC]/60 rounded-lg">
+                              <span className="text-sm font-semibold text-[#4A5D7F]">{metric.value}</span>
+                              <span className="text-[9px] text-gray-400 uppercase tracking-wider font-medium">{metric.label}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Bottom accent bar */}
-                <div className="h-1 bg-gradient-to-r from-[#4A5D7F]/0 via-[#4A5D7F]/20 to-[#4A5D7F]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Summary Stats */}
-          <div className="bg-gradient-to-br from-[#F5F1EC] to-white p-8 rounded-3xl border border-[#4A5D7F]/10 shadow-lg animate-in fade-in slide-in-from-bottom-8 zoom-in-95" style={{ animationDelay: "2200ms", animationDuration: "800ms" }}>
+          <div className="bg-white p-8 rounded-2xl border border-gray-100 animate-in fade-in slide-in-from-bottom-6" style={{ animationDelay: "2000ms", animationDuration: "600ms" }}>
             <div className="text-center mb-6">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 animate-in fade-in duration-400" style={{ animationDelay: "2400ms" }}>Why Practices Choose ASPIRE</p>
-              <h4 className="font-serif text-2xl font-semibold text-[#4A5D7F] animate-in fade-in slide-in-from-bottom duration-500" style={{ animationDelay: "2500ms" }}>All-In-One Practice Growth Platform</h4>
+              <p className="text-[10px] font-medium text-gray-400 uppercase tracking-widest mb-2">Why Practices Choose ASPIRE</p>
+              <h4 className="text-lg font-semibold text-[#2C2C2C]">All-In-One Practice Growth Platform</h4>
             </div>
 
-            <div className="grid grid-cols-4 gap-4 animate-in fade-in duration-600" style={{ animationDelay: "2600ms" }}>
-              {[
-                { icon: "📊", label: "Insights" },
-                { icon: "💬", label: "Comms" },
-                { icon: "💰", label: "Savings" },
-                { icon: "📚", label: "Education" },
-              ].map((item, i) => (
-                <div key={item.label} className="text-center group/item cursor-default animate-in zoom-in-50 duration-500" style={{ animationDelay: `${2700 + i * 100}ms` }}>
-                  <div className="w-12 h-12 mx-auto mb-2 bg-[#4A5D7F]/10 rounded-xl flex items-center justify-center group-hover/item:bg-[#4A5D7F] group-hover/item:scale-110 transition-all duration-300">
-                    <span className="text-xl group-hover/item:scale-125 transition-transform duration-300">{item.icon}</span>
+            <div className="grid grid-cols-4 gap-4">
+              {([
+                { Icon: BarChart3, label: "Insights" },
+                { Icon: MessageCircle, label: "Comms" },
+                { Icon: BadgeDollarSign, label: "Savings" },
+                { Icon: BookOpen, label: "Education" },
+              ] as const).map((item, i) => {
+                const ItemIcon = item.Icon;
+                return (
+                  <div key={item.label} className="text-center group/item cursor-default animate-in zoom-in-50 duration-500" style={{ animationDelay: `${2200 + i * 100}ms` }}>
+                    <div className="w-11 h-11 mx-auto mb-2 bg-[#4A5D7F]/[0.06] rounded-xl flex items-center justify-center group-hover/item:bg-[#4A5D7F] transition-all duration-300">
+                      <ItemIcon className="w-5 h-5 text-[#4A5D7F] group-hover/item:text-white transition-colors duration-300" strokeWidth={1.5} />
+                    </div>
+                    <p className="text-[10px] font-medium text-gray-500 uppercase tracking-wider">{item.label}</p>
                   </div>
-                  <p className="text-[10px] font-semibold text-[#4A5D7F] uppercase tracking-wider">{item.label}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Connecting line visual */}
-            <div className="relative mt-4 mx-8">
-              <div className="h-[2px] bg-gradient-to-r from-transparent via-[#4A5D7F]/20 to-transparent rounded-full animate-in fade-in zoom-in-x-0 duration-1000" style={{ animationDelay: "2900ms" }} />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#4A5D7F] rounded-full animate-in zoom-in-0 duration-300" style={{ animationDelay: "3100ms" }} />
+            <div className="relative mt-5 mx-8">
+              <div className="h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
             </div>
 
-            <p className="text-center text-sm text-gray-500 mt-4 font-light animate-in fade-in duration-500" style={{ animationDelay: "3200ms" }}>
+            <p className="text-center text-[12px] text-gray-400 mt-4 font-light">
               All tools unlock automatically when you enroll — no additional cost.
             </p>
           </div>
 
           {/* Enroll CTA */}
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] p-8 rounded-3xl overflow-hidden shadow-xl animate-in fade-in zoom-in-95" style={{ animationDelay: "3400ms", animationDuration: "700ms" }}>
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C9A96E]/40 to-transparent" />
-            <div className="relative z-10 text-center text-white">
-              <h4 className="font-serif text-2xl font-semibold mb-3 animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3600ms" }}>Ready to Unlock Your Toolkit?</h4>
-              <p className="text-white/70 text-sm mb-6 max-w-md mx-auto animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3700ms" }}>
-                Enroll today and get instant access to all practice tools at no cost
-              </p>
-              <button className="px-10 py-4 bg-white text-[#4A5D7F] rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-xl animate-in zoom-in duration-500" style={{ animationDelay: "3800ms" }}>
-                ENROLL FOR ACCESS →
-              </button>
-            </div>
+          <div className="bg-[#4A5D7F] p-8 rounded-2xl text-center animate-in fade-in" style={{ animationDelay: "2400ms" }}>
+            <h4 className="text-lg font-semibold text-white mb-2">Ready to Unlock Your Toolkit?</h4>
+            <p className="text-white/50 text-[13px] mb-5 max-w-sm mx-auto font-light">
+              Enroll today and get instant access to all practice tools at no cost
+            </p>
+            <button className="px-8 py-3 bg-white text-[#4A5D7F] rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300">
+              Enroll for Access
+            </button>
           </div>
         </div>
       ),
       savings: (
-        <div className="space-y-8">
+        <div className="space-y-6">
           {/* Hero — How It All Adds Up */}
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#3A4D6F] text-white p-12 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-90 duration-800" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", animationDelay: "200ms" }}>
-            {/* Animated background elements */}
-            <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-top-full" style={{ animationDelay: "400ms" }} />
-            <div className="absolute bottom-0 left-0 w-56 h-56 bg-amber-400/10 rounded-full blur-3xl animate-in fade-in duration-1200 slide-in-from-bottom-full" style={{ animationDelay: "600ms" }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl animate-in fade-in zoom-in-50 duration-1500" style={{ animationDelay: "800ms" }} />
-
-            {/* Subtle coin/money pattern */}
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='white' stroke-width='0.5'/%3E%3Ccircle cx='30' cy='30' r='4' fill='none' stroke='white' stroke-width='0.3'/%3E%3C/svg%3E")`
-            }} />
+          <div className="relative bg-[#4A5D7F] text-white p-10 rounded-2xl overflow-hidden animate-in fade-in duration-500" style={{ animationDelay: "200ms" }}>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.04] rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/[0.03] rounded-full blur-2xl translate-y-1/3 -translate-x-1/4" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] mb-6 border border-white/10 animate-in fade-in slide-in-from-left-8 duration-500" style={{ animationDelay: "600ms" }}>
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Financial Benefits
-              </div>
-              <h3 className="font-serif text-5xl font-light mb-4 tracking-tight animate-in fade-in slide-in-from-left-12 zoom-in-95 duration-700" style={{ animationDelay: "750ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}>
-                How It All{" "}
-                <span className="font-semibold animate-in fade-in zoom-in-50 duration-500" style={{ animationDelay: "950ms" }}>
-                  Adds Up
-                </span>
+              <p className="text-[10px] font-medium text-white/50 uppercase tracking-widest mb-4">Financial Benefits</p>
+              <h3 className="text-3xl font-light mb-3 tracking-tight">
+                How It All <span className="font-semibold">Adds Up</span>
               </h3>
-              <p className="text-white/80 text-base leading-relaxed max-w-2xl animate-in fade-in slide-in-from-left-8 duration-600" style={{ animationDelay: "1100ms" }}>
-                When you join ASPIRE, you automatically unlock valuable product discounts, rebates and rewards. Plus, you can offer patients significant savings across the Galderma aesthetic portfolio to drive engagement and grow your business.
+              <p className="text-white/60 text-sm leading-relaxed max-w-lg font-light">
+                When you join ASPIRE, you automatically unlock valuable product discounts, rebates and rewards. Plus, offer patients significant savings to drive engagement and grow your business.
               </p>
             </div>
           </div>
 
           {/* Three Pillars of Value */}
-          <div className="space-y-4">
-            {[
+          <div className="space-y-3">
+            {([
               {
-                icon: "🏷️",
+                Icon: Tag,
                 title: "Product Discounts",
                 description: "Exclusive pricing on the full Galderma aesthetic portfolio — automatically unlocked when you enroll.",
                 highlight: `${count30}%`,
                 highlightLabel: "Avg. Discount",
-                gradient: "from-emerald-50 to-teal-50",
               },
               {
-                icon: "💰",
+                Icon: Wallet,
                 title: "Practice Rebates",
                 description: "Valuable rebates credited directly to your practice account on qualifying product purchases.",
                 highlight: `$${count500}+`,
                 highlightLabel: "Annual Value",
-                gradient: "from-amber-50 to-orange-50",
               },
               {
-                icon: "🎁",
+                Icon: Gift,
                 title: "Patient Savings",
                 description: "Offer your patients significant savings across treatments — driving engagement, loyalty, and repeat visits.",
                 highlight: `$${count45}+`,
                 highlightLabel: "Per Treatment",
-                gradient: "from-blue-50 to-cyan-50",
               },
-            ].map((pillar, i) => (
-              <div
-                key={pillar.title}
-                className="group relative bg-white/90 backdrop-blur-xl border-2 border-[#4A5D7F]/8 hover:border-[#4A5D7F]/25 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1 cursor-default animate-in fade-in slide-in-from-bottom-8 zoom-in-95"
-                style={{ animationDelay: `${1300 + i * 200}ms`, animationDuration: "700ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
-              >
-                {/* Hover gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-all duration-700`} />
+            ] as const).map((pillar, i) => {
+              const PillarIcon = pillar.Icon;
+              return (
+                <div
+                  key={pillar.title}
+                  className="group bg-white border border-gray-100 hover:border-[#4A5D7F]/20 rounded-2xl overflow-hidden transition-all duration-400 hover:shadow-md cursor-default animate-in fade-in slide-in-from-bottom-6"
+                  style={{ animationDelay: `${1300 + i * 150}ms`, animationDuration: "600ms", animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
+                >
+                  <div className="p-6">
+                    <div className="flex items-center gap-5">
+                      {/* Icon */}
+                      <div className="w-12 h-12 rounded-xl bg-[#4A5D7F]/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-[#4A5D7F]/10 transition-colors duration-300">
+                        <PillarIcon className="w-5 h-5 text-[#4A5D7F]" strokeWidth={1.5} />
+                      </div>
 
-                <div className="relative p-7">
-                  <div className="flex items-center gap-5">
-                    {/* Icon */}
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#F5F1EC] to-white flex items-center justify-center flex-shrink-0 shadow-lg border border-[#4A5D7F]/8 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
-                      <span className="text-3xl">{pillar.icon}</span>
-                    </div>
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-semibold text-[#2C2C2C] mb-0.5">{pillar.title}</h4>
+                        <p className="text-[12px] text-gray-500 leading-relaxed font-light">{pillar.description}</p>
+                      </div>
 
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-serif text-xl font-semibold text-[#4A5D7F] mb-1 tracking-tight">{pillar.title}</h4>
-                      <p className="text-sm text-[#2C2C2C]/70 leading-relaxed font-light">{pillar.description}</p>
-                    </div>
-
-                    {/* Metric Badge */}
-                    <div className="flex-shrink-0 text-center px-4 py-3 bg-[#4A5D7F]/5 group-hover:bg-white/80 rounded-2xl transition-colors duration-300">
-                      <p className="font-serif text-2xl font-semibold text-[#4A5D7F]">{pillar.highlight}</p>
-                      <p className="text-[9px] text-gray-500 uppercase tracking-wider font-semibold">{pillar.highlightLabel}</p>
+                      {/* Metric Badge */}
+                      <div className="flex-shrink-0 text-center px-4 py-2.5 bg-[#F5F1EC]/60 rounded-xl">
+                        <p className="text-xl font-semibold text-[#4A5D7F]">{pillar.highlight}</p>
+                        <p className="text-[9px] text-gray-400 uppercase tracking-wider font-medium">{pillar.highlightLabel}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Bottom accent */}
-                <div className="h-1 bg-gradient-to-r from-[#4A5D7F]/0 via-[#4A5D7F]/15 to-[#4A5D7F]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Visual Equation: Discounts + Rebates + Patient Savings = Growth */}
-          <div className="bg-gradient-to-br from-[#F5F1EC] to-white p-8 rounded-3xl border border-[#4A5D7F]/10 shadow-lg animate-in fade-in slide-in-from-bottom-8 zoom-in-95" style={{ animationDelay: "2100ms", animationDuration: "800ms" }}>
+          <div className="bg-white p-8 rounded-2xl border border-gray-100 animate-in fade-in slide-in-from-bottom-6" style={{ animationDelay: "2000ms", animationDuration: "600ms" }}>
             <div className="text-center mb-6">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">The ASPIRE Equation</p>
+              <p className="text-[10px] font-medium text-gray-400 uppercase tracking-widest">The ASPIRE Equation</p>
             </div>
 
-            <div className="flex items-center justify-center gap-3 flex-wrap animate-in fade-in duration-700" style={{ animationDelay: "2300ms" }}>
-              {[
-                { label: "Discounts", icon: "🏷️" },
-                { label: "Rebates", icon: "💰" },
-                { label: "Patient Savings", icon: "🎁" },
-              ].map((item, i) => (
-                <div key={item.label} className="flex items-center gap-3">
-                  <div className="text-center px-4 py-3 bg-white rounded-xl shadow-sm border border-[#4A5D7F]/10 animate-in zoom-in-50 duration-500" style={{ animationDelay: `${2400 + i * 150}ms` }}>
-                    <span className="text-xl block mb-1">{item.icon}</span>
-                    <span className="text-[10px] font-semibold text-[#4A5D7F] uppercase tracking-wider">{item.label}</span>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              {([
+                { label: "Discounts", Icon: Tag },
+                { label: "Rebates", Icon: Wallet },
+                { label: "Patient Savings", Icon: Gift },
+              ] as const).map((item, i) => {
+                const EqIcon = item.Icon;
+                return (
+                  <div key={item.label} className="flex items-center gap-3">
+                    <div className="text-center px-4 py-3 bg-[#FAFAF8] rounded-xl border border-gray-100 animate-in zoom-in-50 duration-500" style={{ animationDelay: `${2200 + i * 150}ms` }}>
+                      <EqIcon className="w-5 h-5 text-[#4A5D7F] mx-auto mb-1.5" strokeWidth={1.5} />
+                      <span className="text-[9px] font-medium text-gray-500 uppercase tracking-wider">{item.label}</span>
+                    </div>
+                    {i < 2 && (
+                      <span className="text-gray-300 font-light text-xl">+</span>
+                    )}
                   </div>
-                  {i < 2 && (
-                    <span className="text-[#4A5D7F]/40 font-light text-2xl animate-in fade-in duration-300" style={{ animationDelay: `${2500 + i * 150}ms` }}>+</span>
-                  )}
-                </div>
-              ))}
+                );
+              })}
 
-              <span className="text-[#4A5D7F]/40 font-light text-2xl mx-2 animate-in fade-in duration-300" style={{ animationDelay: "2800ms" }}>=</span>
+              <span className="text-gray-300 font-light text-xl mx-1">=</span>
 
-              <div className="text-center px-6 py-3 bg-gradient-to-br from-[#4A5D7F] to-[#3A4D6F] rounded-xl shadow-lg animate-in zoom-in-50 duration-500" style={{ animationDelay: "2900ms" }}>
-                <span className="text-xl block mb-1">📈</span>
-                <span className="text-[10px] font-semibold text-white uppercase tracking-wider">Business Growth</span>
+              <div className="text-center px-5 py-3 bg-[#4A5D7F] rounded-xl shadow-sm animate-in zoom-in-50 duration-500" style={{ animationDelay: "2700ms" }}>
+                <TrendingUp className="w-5 h-5 text-white mx-auto mb-1.5" strokeWidth={1.5} />
+                <span className="text-[9px] font-medium text-white/80 uppercase tracking-wider">Growth</span>
               </div>
             </div>
 
-            <p className="text-center text-sm text-gray-500 mt-6 font-light max-w-md mx-auto animate-in fade-in duration-500" style={{ animationDelay: "3100ms" }}>
+            <p className="text-center text-[12px] text-gray-400 mt-5 font-light max-w-sm mx-auto">
               Everything unlocks automatically — no additional cost, no complex activation.
             </p>
           </div>
 
           {/* CTA */}
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] p-8 rounded-3xl overflow-hidden shadow-xl animate-in fade-in zoom-in-95" style={{ animationDelay: "3300ms", animationDuration: "700ms" }}>
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C9A96E]/40 to-transparent" />
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
-            <div className="relative z-10 text-center text-white">
-              <h4 className="font-serif text-2xl font-semibold mb-3 animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3500ms" }}>Start Saving Today</h4>
-              <p className="text-white/70 text-sm mb-6 max-w-md mx-auto animate-in fade-in slide-in-from-bottom duration-400" style={{ animationDelay: "3600ms" }}>
-                Enroll in ASPIRE and unlock discounts, rebates, and patient savings immediately
-              </p>
-              <button className="px-10 py-4 bg-white text-[#4A5D7F] rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-xl animate-in zoom-in duration-500" style={{ animationDelay: "3700ms" }}>
-                ENROLL NOW →
-              </button>
-            </div>
+          <div className="bg-[#4A5D7F] p-8 rounded-2xl text-center animate-in fade-in" style={{ animationDelay: "2400ms" }}>
+            <h4 className="text-lg font-semibold text-white mb-2">Start Saving Today</h4>
+            <p className="text-white/50 text-[13px] mb-5 max-w-sm mx-auto font-light">
+              Enroll in ASPIRE and unlock discounts, rebates, and patient savings immediately
+            </p>
+            <button className="px-8 py-3 bg-white text-[#4A5D7F] rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300">
+              Enroll Now
+            </button>
           </div>
         </div>
       ),
       growth: (
-        <div className="space-y-8">
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] text-white p-12 rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-90 duration-800" style={{ animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", animationDelay: "200ms" }}>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl animate-in fade-in duration-1200" style={{ animationDelay: "400ms" }} />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-pink-400/10 rounded-full blur-3xl animate-in fade-in duration-1200" style={{ animationDelay: "600ms" }} />
+        <div className="space-y-6">
+          <div className="relative bg-[#4A5D7F] text-white p-10 rounded-2xl overflow-hidden animate-in fade-in duration-500" style={{ animationDelay: "200ms" }}>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.04] rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/[0.03] rounded-full blur-2xl translate-y-1/3 -translate-x-1/4" />
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] mb-6 border border-white/10">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Practice Success
-              </div>
-              <h3 className="font-serif text-5xl font-light mb-4 tracking-tight animate-in fade-in slide-in-from-left-12 zoom-in-95 duration-700" style={{ animationDelay: "750ms" }}>
+              <p className="text-[10px] font-medium text-white/50 uppercase tracking-widest mb-4">Practice Success</p>
+              <h3 className="text-3xl font-light mb-3 tracking-tight">
                 Business <span className="font-semibold">Growth</span>
               </h3>
-              <p className="text-white/70 text-base leading-relaxed max-w-2xl animate-in fade-in slide-in-from-left-8 duration-600" style={{ animationDelay: "1100ms" }}>
+              <p className="text-white/60 text-sm leading-relaxed max-w-lg font-light">
                 Drive patient engagement, increase retention, and grow your aesthetic practice with ASPIRE.
               </p>
             </div>
           </div>
 
           {/* Growth Metrics */}
-          <div className="bg-gradient-to-br from-[#F5F1EC] to-white p-8 rounded-2xl border border-[#4A5D7F]/10 shadow-lg animate-in fade-in zoom-in-95" style={{ animationDelay: "1300ms" }}>
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6 text-center">Practice Impact</p>
+          <div className="bg-white p-8 rounded-2xl border border-gray-100 animate-in fade-in" style={{ animationDelay: "1300ms" }}>
+            <p className="text-[10px] font-medium text-gray-400 uppercase tracking-widest mb-6 text-center">Practice Impact</p>
             <div className="grid grid-cols-3 gap-6">
-              {[
-                { value: `${count15}K+`, label: "Enrolled Practices", icon: "🏥" },
-                { value: `${count92}%`, label: "Retention Rate", icon: "📈" },
-                { value: `${count2x}x`, label: "Patient Visits", icon: "👥" },
-              ].map((stat, i) => (
-                <div key={stat.label} className="text-center animate-in fade-in slide-in-from-bottom-6" style={{ animationDelay: `${1500 + i * 150}ms` }}>
-                  <div className="text-3xl mb-2">{stat.icon}</div>
-                  <p className="font-serif text-3xl font-light text-[#4A5D7F] mb-1">{stat.value}</p>
-                  <p className="text-xs text-gray-600 font-medium">{stat.label}</p>
-                </div>
-              ))}
+              {([
+                { value: `${count15}K+`, label: "Enrolled Practices", Icon: Building2 },
+                { value: `${count92}%`, label: "Retention Rate", Icon: LineChart },
+                { value: `${count2x}x`, label: "Patient Visits", Icon: Users },
+              ] as const).map((stat, i) => {
+                const StatIcon = stat.Icon;
+                return (
+                  <div key={stat.label} className="text-center animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: `${1500 + i * 150}ms` }}>
+                    <div className="w-11 h-11 mx-auto mb-3 bg-[#4A5D7F]/[0.06] rounded-xl flex items-center justify-center">
+                      <StatIcon className="w-5 h-5 text-[#4A5D7F]" strokeWidth={1.5} />
+                    </div>
+                    <p className="text-2xl font-semibold text-[#2C2C2C] mb-0.5">{stat.value}</p>
+                    <p className="text-[11px] text-gray-400 font-medium">{stat.label}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* Growth Strategies */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-2xl font-semibold text-[#4A5D7F] mb-4">Growth Strategies</h4>
-            {[
-              { title: "Patient Retention", desc: "Reward loyal patients to keep them coming back. ASPIRE savings give patients a reason to stay.", icon: "🔄" },
-              { title: "New Patient Acquisition", desc: "Use patient insights to identify opportunities and reach new audiences effectively.", icon: "🎯" },
-              { title: "Revenue Per Visit", desc: "Cross-sell across the Galderma portfolio with educational resources that inform patients.", icon: "💎" },
-            ].map((strategy, i) => (
-              <div key={strategy.title} className="group bg-white/80 backdrop-blur-xl border border-[#4A5D7F]/10 hover:border-[#4A5D7F]/30 rounded-2xl p-6 transition-all duration-500 hover:shadow-lg animate-in fade-in slide-in-from-left-6" style={{ animationDelay: `${2000 + i * 200}ms` }}>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F5F1EC] to-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-500">
-                    <span className="text-2xl">{strategy.icon}</span>
-                  </div>
-                  <div>
-                    <h5 className="font-semibold text-[#4A5D7F] mb-1">{strategy.title}</h5>
-                    <p className="text-sm text-gray-600 leading-relaxed">{strategy.desc}</p>
+          <div className="space-y-3">
+            <h4 className="text-base font-semibold text-[#2C2C2C] mb-3">Growth Strategies</h4>
+            {([
+              { title: "Patient Retention", desc: "Reward loyal patients to keep them coming back. ASPIRE savings give patients a reason to stay.", Icon: RefreshCw },
+              { title: "New Patient Acquisition", desc: "Use patient insights to identify opportunities and reach new audiences effectively.", Icon: Target },
+              { title: "Revenue Per Visit", desc: "Cross-sell across the Galderma portfolio with educational resources that inform patients.", Icon: Gem },
+            ] as const).map((strategy, i) => {
+              const StratIcon = strategy.Icon;
+              return (
+                <div key={strategy.title} className="group bg-white border border-gray-100 hover:border-[#4A5D7F]/20 rounded-2xl p-5 transition-all duration-300 hover:shadow-md animate-in fade-in slide-in-from-left-4" style={{ animationDelay: `${2000 + i * 150}ms` }}>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-[#4A5D7F]/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-[#4A5D7F]/10 transition-colors duration-300">
+                      <StratIcon className="w-4 h-4 text-[#4A5D7F]" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h5 className="text-sm font-semibold text-[#2C2C2C] mb-0.5">{strategy.title}</h5>
+                      <p className="text-[12px] text-gray-500 leading-relaxed font-light">{strategy.desc}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* CTA */}
-          <div className="relative bg-gradient-to-br from-[#4A5D7F] to-[#5A6D8F] p-8 rounded-3xl overflow-hidden shadow-xl animate-in fade-in zoom-in-95" style={{ animationDelay: "2800ms" }}>
-            <div className="relative z-10 text-center text-white">
-              <h4 className="font-serif text-2xl font-semibold mb-3">Ready to Grow Your Practice?</h4>
-              <p className="text-white/70 text-sm mb-6 max-w-md mx-auto">
-                Join ASPIRE Practice Rewards and unlock the tools to build your business
-              </p>
-              <button className="px-10 py-4 bg-white text-[#4A5D7F] rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-xl">
-                ENROLL NOW →
-              </button>
-            </div>
+          <div className="bg-[#4A5D7F] p-8 rounded-2xl text-center animate-in fade-in" style={{ animationDelay: "2600ms" }}>
+            <h4 className="text-lg font-semibold text-white mb-2">Ready to Grow Your Practice?</h4>
+            <p className="text-white/50 text-[13px] mb-5 max-w-sm mx-auto font-light">
+              Join ASPIRE Practice Rewards and unlock the tools to build your business
+            </p>
+            <button className="px-8 py-3 bg-white text-[#4A5D7F] rounded-full text-sm font-semibold hover:shadow-lg transition-all duration-300">
+              Enroll Now
+            </button>
           </div>
         </div>
       ),
