@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 type InquiryType = "practice" | "member" | null;
@@ -43,10 +44,15 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-[#F5F1EC] grain-texture">
-      {/* Top cream banner */}
-      <div className="bg-gradient-to-br from-[#EDE7E0] to-[#F5F1EC] h-48 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4A5D7F]/[0.03] to-transparent" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+      {/* Top cream banner with brand pattern */}
+      <div className="h-48 relative overflow-hidden">
+        <Image
+          src="/images/bg-pattern.jpg"
+          alt=""
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[#F5F1EC]/30" />
       </div>
 
       <div className="max-w-xl mx-auto px-6 -mt-24 relative pb-20">

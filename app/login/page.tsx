@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Eye, EyeOff, Lock } from "lucide-react";
 
 export default function LoginPage() {
@@ -27,11 +28,15 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#F5F1EC] grain-texture flex flex-col">
-      {/* Top cream banner */}
-      <div className="bg-gradient-to-br from-[#EDE7E0] to-[#F5F1EC] h-48 relative overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4A5D7F]/[0.03] to-transparent" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
-        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-[#C9A96E]/[0.03] rounded-full blur-3xl translate-y-1/2" />
+      {/* Top cream banner with brand pattern */}
+      <div className="h-48 relative overflow-hidden flex-shrink-0">
+        <Image
+          src="/images/bg-pattern.jpg"
+          alt=""
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[#F5F1EC]/30" />
       </div>
 
       <div className="max-w-md mx-auto px-6 -mt-24 relative pb-20 w-full">

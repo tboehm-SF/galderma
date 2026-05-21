@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const [dysportOpen, setDysportOpen] = useState(false);
@@ -233,10 +234,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-14">
         {/* Brand mark */}
         <div className="text-center mb-10">
-          <span className="text-lg font-light tracking-[0.3em] text-[#4A5D7F]/60">
+          <Image
+            src="/images/galderma-logo-gold.png"
+            alt="Galderma"
+            width={120}
+            height={32}
+            className="mx-auto mb-3 opacity-70"
+          />
+          <span className="text-sm font-light tracking-[0.3em] text-[#4A5D7F]/50">
             ASPIRE
           </span>
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider mt-1">HCP</p>
         </div>
 
         {/* Main Footer Links */}

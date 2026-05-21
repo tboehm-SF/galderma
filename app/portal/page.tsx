@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   BarChart3,
   Users,
@@ -38,12 +39,19 @@ export default function PortalPage() {
       <aside className="w-64 bg-white border-r border-gray-100 flex flex-col fixed h-full z-40">
         {/* Logo */}
         <div className="px-6 py-6 border-b border-gray-100">
-          <Link href="/">
-            <span className="text-xl font-light tracking-[0.3em] text-[#4A5D7F]">
+          <Link href="/" className="block">
+            <Image
+              src="/images/galderma-logo-gold.png"
+              alt="Galderma"
+              width={100}
+              height={26}
+              className="mb-2 opacity-70"
+            />
+            <span className="text-sm font-light tracking-[0.25em] text-[#4A5D7F]/60">
               ASPIRE
             </span>
           </Link>
-          <p className="text-[9px] text-[#4A5D7F]/50 uppercase tracking-wider mt-1 font-semibold">
+          <p className="text-[9px] text-gray-400 uppercase tracking-wider mt-1 font-medium">
             Practice Portal
           </p>
         </div>
