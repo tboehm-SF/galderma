@@ -57,10 +57,7 @@ export async function POST(request: NextRequest) {
         name: account?.Name,
         city: account?.BillingCity,
         state: account?.BillingState,
-        accountId: account
-          ? (account as Record<string, unknown>).Id ||
-            ((member as Record<string, unknown>).Contact as Record<string, unknown>)?.AccountId
-          : null,
+        accountId: contact?.AccountId || null,
       },
       tier: tier
         ? {

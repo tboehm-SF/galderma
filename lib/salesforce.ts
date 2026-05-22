@@ -67,7 +67,7 @@ export async function getMemberByEmail(email: string) {
   const result = await c.query(`
     SELECT Id, MembershipNumber, MemberStatus, MemberType, EnrollmentDate,
            ContactId, Contact.FirstName, Contact.LastName, Contact.Email,
-           Contact.Title, Contact.Phone,
+           Contact.Title, Contact.Phone, Contact.AccountId,
            Contact.Account.Name, Contact.Account.BillingCity, Contact.Account.BillingState,
            ProgramId, Program.Name
     FROM LoyaltyProgramMember
