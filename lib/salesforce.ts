@@ -13,7 +13,7 @@ async function getConnection(): Promise<Connection> {
     const c = new jsforce.Connection({
       instanceUrl: process.env.SF_INSTANCE_URL,
       accessToken: process.env.SF_ACCESS_TOKEN,
-      version: "62.0",
+      version: "66.0",
     });
     conn = c;
     tokenExpiry = now + 110 * 60 * 1000;
@@ -34,6 +34,7 @@ async function getConnection(): Promise<Connection> {
     const c = new jsforce.Connection({
       instanceUrl: data.instance_url,
       accessToken: data.access_token,
+      version: "66.0",
     });
     conn = c;
     tokenExpiry = now + 110 * 60 * 1000;
