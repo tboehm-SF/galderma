@@ -4,12 +4,15 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Lock, Sparkles, Mail } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Lock, Sparkles } from "lucide-react";
 import { saveMember } from "@/lib/store";
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -63,7 +66,7 @@ export default function LoginPage() {
             <h1 className="font-serif text-3xl text-[#4A5D7F] mb-2 font-light">
               Welcome <span className="font-normal">Back</span>
             </h1>
-            <p className="text-[#2C2C2C]/50 text-sm font-light">Access your ASPIRE Practice Rewards portal</p>
+            <p className="text-[#2C2C2C]/50 text-sm font-light">Sign in to your ASPIRE Practice Rewards account</p>
           </div>
 
           {error && (
@@ -79,7 +82,7 @@ export default function LoginPage() {
             </div>
             <p className="text-xs text-[#2C2C2C]/50">
               Use{" "}
-              <button type="button" onClick={() => { setEmail("aaronmorita@gmail.com"); }} className="text-[#4A5D7F] font-medium underline underline-offset-2 cursor-pointer">
+              <button type="button" onClick={() => { setEmail("aaronmorita@gmail.com"); setPassword("demo1234"); }} className="text-[#4A5D7F] font-medium underline underline-offset-2 cursor-pointer">
                 Dr. Aaron Morita&apos;s account
               </button>{" "}
               to explore
@@ -88,12 +91,26 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="login-email" className="block text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider mb-2">Practice Email Address</label>
+              <label htmlFor="login-email" className="block text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider mb-2">Email Address</label>
+              <input type="email" id="login-email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" className="w-full px-4 py-3.5 border border-gray-200 rounded-xl focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 focus:outline-none transition-all duration-300 text-[15px] bg-[#FAFAFA] hover:bg-white placeholder:text-gray-400" required />
+            </div>
+
+            <div>
+              <label htmlFor="login-password" className="block text-xs font-semibold text-[#4A5D7F] uppercase tracking-wider mb-2">Password</label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input type="email" id="login-email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your registered email" className="w-full pl-11 pr-4 py-3.5 border border-gray-200 rounded-xl focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 focus:outline-none transition-all duration-300 text-[15px] bg-[#FAFAFA] hover:bg-white placeholder:text-gray-400" required />
+                <input type={showPassword ? "text" : "password"} id="login-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" className="w-full px-4 py-3.5 pr-12 border border-gray-200 rounded-xl focus:border-[#4A5D7F] focus:ring-2 focus:ring-[#4A5D7F]/10 focus:outline-none transition-all duration-300 text-[15px] bg-[#FAFAFA] hover:bg-white placeholder:text-gray-400" required />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#4A5D7F] transition-colors duration-300 rounded-lg hover:bg-[#F5F1EC]/50" aria-label={showPassword ? "Hide password" : "Show password"}>
+                  {showPassword ? <EyeOff className="w-4 h-4" strokeWidth={1.5} /> : <Eye className="w-4 h-4" strokeWidth={1.5} />}
+                </button>
               </div>
-              <p className="text-[10px] text-gray-400 mt-2 font-light">Enter the email associated with your ASPIRE membership</p>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2.5 cursor-pointer group">
+                <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-[#4A5D7F] focus:ring-[#4A5D7F]" />
+                <span className="text-sm text-[#2C2C2C]/60 font-light group-hover:text-[#2C2C2C] transition-colors">Remember me</span>
+              </label>
+              <a href="#" className="text-sm text-[#4A5D7F] font-medium hover:underline underline-offset-4">Forgot password?</a>
             </div>
 
             <div className="pt-2">
@@ -104,7 +121,7 @@ export default function LoginPage() {
                     Authenticating...
                   </>
                 ) : (
-                  "ACCESS PORTAL"
+                  "SIGN IN"
                 )}
               </button>
             </div>
