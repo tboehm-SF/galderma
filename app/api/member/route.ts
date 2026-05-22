@@ -7,6 +7,8 @@ import {
   createTransaction,
 } from "@/lib/salesforce";
 
+export const dynamic = "force-dynamic";
+
 // GET /api/member?action=transactions|patients|currencies|vouchers&memberId=...
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;

@@ -7,6 +7,8 @@ import {
   getProgramTiers,
 } from "@/lib/salesforce";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();

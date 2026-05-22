@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public"
   },
   "dependencies": {
     "jsforce": "^3.10.15",
