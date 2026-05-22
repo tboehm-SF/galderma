@@ -244,8 +244,8 @@ function OverviewTab({ member, transactions, statusPts, rewardPts, nextTier, pro
                       <TrendingUp className="w-4 h-4 text-[#4A5D7F]" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-[#2C2C2C]">{String((txn.JournalType as Record<string, unknown>)?.Name || "Treatment")}</p>
-                      <p className="text-xs text-gray-400">Ref: {String(txn.ExternalTransactionNumber || "—")}</p>
+                      <p className="text-sm font-medium text-[#2C2C2C]">{(() => { const jt = txn.JournalType as Record<string, unknown> | null; return String(jt?.Name ?? "Treatment"); })()}</p>
+                      <p className="text-xs text-gray-400">Ref: {String(txn.ExternalTransactionNumber ?? "—")}</p>
                     </div>
                   </div>
                   <div className="text-right">
