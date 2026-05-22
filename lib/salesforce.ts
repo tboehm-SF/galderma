@@ -132,15 +132,21 @@ export async function getTransactions(memberId: string, limit = 20) {
   return (result.records || []) as Record<string, unknown>[];
 }
 
-// ─── Patients under same account ───
+// ─── Patients under same account (with ASPIRE insight fields) ───
 export async function getPatients(accountId: string, excludeContactId: string) {
   const c = await getConnection();
   const result = await c.query(`
-    SELECT Id, FirstName, LastName, Email, Phone, CreatedDate
+    SELECT Id, FirstName, LastName, Email, Phone, CreatedDate,
+           ASPIRE_Treatment_Count__c,
+           ASPIRE_Last_Treatment_Date__c,
+           ASPIRE_Preferred_Product__c,
+           ASPIRE_Patient_Status__c,
+           ASPIRE_Total_Revenue__c,
+           ASPIRE_Next_Appointment__c
     FROM Contact
     WHERE AccountId = '${accountId}'
     AND Id != '${excludeContactId}'
-    ORDER BY LastName
+    ORDER BY ASPIRE_Total_Revenue__c DESC NULLS LAST
   `);
   return (result.records || []) as Record<string, unknown>[];
 }

@@ -312,22 +312,67 @@ function InsightsTab({ patients }: { patients: Record<string, unknown>[] }) {
   const [filter, setFilter] = useState("All Patients");
   const filters = ["All Patients", "Active", "VIP", "At Risk", "New"];
 
-  // Enrich patient data with mock treatment counts (in real app, would come from Salesforce)
-  const enrichedPatients = patients.map((p, i) => ({
+  // Map real ASPIRE custom field data from Salesforce
+  const enrichedPatients = patients.map((p) => ({
     ...p,
-    treatments: [8, 12, 5, 15, 3, 7, 10, 4][i] || 5,
-    totalPoints: [450, 820, 350, 1100, 150, 520, 680, 200][i] || 300,
-    status: ["Active", "Active", "Active", "VIP", "New", "At Risk", "Active", "New"][i] || "Active",
-    lastVisit: new Date(Date.now() - (i * 4 + 2) * 86400000).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+    treatments: Number(p.ASPIRE_Treatment_Count__c || 0),
+    totalRevenue: Number(p.ASPIRE_Total_Revenue__c || 0),
+    status: String(p.ASPIRE_Patient_Status__c || "Active"),
+    preferredProduct: String(p.ASPIRE_Preferred_Product__c || "—"),
+    lastVisit: p.ASPIRE_Last_Treatment_Date__c
+      ? new Date(p.ASPIRE_Last_Treatment_Date__c as string + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+      : "—",
+    nextAppt: p.ASPIRE_Next_Appointment__c
+      ? new Date(p.ASPIRE_Next_Appointment__c as string + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })
+      : "—",
   }));
+
+  const filtered = filter === "All Patients"
+    ? enrichedPatients
+    : enrichedPatients.filter((p) => p.status === filter);
+
+  const totalRevenue = enrichedPatients.reduce((sum, p) => sum + p.totalRevenue, 0);
+  const totalTreatments = enrichedPatients.reduce((sum, p) => sum + p.treatments, 0);
+  const vipCount = enrichedPatients.filter((p) => p.status === "VIP").length;
+  const atRiskCount = enrichedPatients.filter((p) => p.status === "At Risk").length;
 
   return (
     <div className="space-y-6">
+      {/* Summary Stats */}
+      <div className="grid grid-cols-4 gap-5">
+        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Total Patients</p>
+          <p className="font-serif text-2xl font-semibold text-[#2C2C2C]">{enrichedPatients.length}</p>
+          <p className="text-[10px] text-gray-400 mt-1">{totalTreatments} total treatments</p>
+        </div>
+        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Total Revenue</p>
+          <p className="font-serif text-2xl font-semibold text-[#4A5D7F]">${totalRevenue.toLocaleString()}</p>
+          <p className="text-[10px] text-gray-400 mt-1">Lifetime value</p>
+        </div>
+        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">VIP Patients</p>
+          <p className="font-serif text-2xl font-semibold text-purple-700">{vipCount}</p>
+          <p className="text-[10px] text-gray-400 mt-1">High-value patients</p>
+        </div>
+        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">At Risk</p>
+          <p className="font-serif text-2xl font-semibold text-amber-600">{atRiskCount}</p>
+          <p className="text-[10px] text-gray-400 mt-1">Need re-engagement</p>
+        </div>
+      </div>
+
+      {/* Filters */}
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           {filters.map((f) => (
             <button key={f} onClick={() => setFilter(f)} className={`px-4 py-2 rounded-lg text-xs font-semibold transition-colors ${filter === f ? "bg-[#4A5D7F] text-white" : "bg-white border border-gray-200 text-gray-600 hover:border-[#4A5D7F] hover:text-[#4A5D7F]"}`}>
               {f}
+              {f !== "All Patients" && (
+                <span className="ml-1.5 opacity-60">
+                  ({enrichedPatients.filter((p) => p.status === f).length})
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -344,13 +389,15 @@ function InsightsTab({ patients }: { patients: Record<string, unknown>[] }) {
               <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Patient</th>
               <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Last Visit</th>
               <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Treatments</th>
-              <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Points</th>
+              <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Revenue</th>
+              <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Product</th>
               <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Status</th>
+              <th className="text-left px-6 py-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Next Appt</th>
               <th className="px-6 py-3"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {enrichedPatients.map((patient) => {
+            {filtered.map((patient) => {
               const raw = patient as Record<string, unknown>;
               const first = String(raw.FirstName || "");
               const last = String(raw.LastName || "");
@@ -369,7 +416,8 @@ function InsightsTab({ patients }: { patients: Record<string, unknown>[] }) {
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500">{patient.lastVisit}</td>
                   <td className="px-6 py-4 text-sm text-[#2C2C2C] font-medium">{patient.treatments}</td>
-                  <td className="px-6 py-4 text-sm font-semibold text-[#4A5D7F]">{patient.totalPoints}</td>
+                  <td className="px-6 py-4 text-sm font-semibold text-[#4A5D7F]">${patient.totalRevenue.toLocaleString()}</td>
+                  <td className="px-6 py-4 text-xs text-gray-600">{patient.preferredProduct}</td>
                   <td className="px-6 py-4">
                     <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold ${
                       patient.status === "VIP" ? "bg-purple-50 text-purple-700" :
@@ -378,6 +426,7 @@ function InsightsTab({ patients }: { patients: Record<string, unknown>[] }) {
                       "bg-blue-50 text-blue-700"
                     }`}>{patient.status}</span>
                   </td>
+                  <td className="px-6 py-4 text-sm text-gray-500">{patient.nextAppt}</td>
                   <td className="px-6 py-4">
                     <button className="p-1.5 rounded-lg hover:bg-[#F5F1EC] text-gray-400 hover:text-[#4A5D7F] transition-colors">
                       <ArrowUpRight className="w-4 h-4" />
@@ -388,6 +437,11 @@ function InsightsTab({ patients }: { patients: Record<string, unknown>[] }) {
             })}
           </tbody>
         </table>
+        {filtered.length === 0 && (
+          <div className="px-6 py-12 text-center text-sm text-gray-400">
+            No patients match the selected filter.
+          </div>
+        )}
       </div>
     </div>
   );
